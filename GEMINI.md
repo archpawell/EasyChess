@@ -7,7 +7,7 @@
 - **Google Drive Folder**: `Antigraviti` (`1fRNhYSp2BpDvT57HAU0ew4al8E9VU2BR`)
 - **Google Drive Archives**:
   - `antigravity-2d-chess-project.zip`: `14SC_OtSGmOAAZbpGTyZccCuMk-gBE0Jv`
-  - `EasyChess.zip`: `<PENDING_UPLOAD_ID>`
+  - `EasyChess.zip`: `1yyDpR0eQEo9AV9-VcksYmmHKrF1H7-BZ`
 
 ## Mandatory Post-Change Sync Rule
 After making **any** modifications to the EasyChess project, you **must** upload all changes to both GitHub and Google Drive:
