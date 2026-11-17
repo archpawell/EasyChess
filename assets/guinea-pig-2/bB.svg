@@ -1,0 +1,44 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Floor Shadow -->
+          <ellipse cx="49" cy="86" rx="29" ry="5.5" fill="#e2e8f0" opacity="0.16"/>
+          <!-- Tall Pear Body -->
+          <path d="M24 72 C21 57 26 42 33 35 C41 30 57 30 65 35 C72 42 77 57 74 72 C72 81 64 84 49 84 C34 84 26 81 24 72 Z"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.6" stroke-linejoin="round"/>
+          <!-- Symmetrical Grey Eye/Cheek Patches -->
+          <path d="M32 35 C39 33 44 38 43 46 C42 52 34 52 29 47 C27 43 29 37 32 35 Z" fill="rgb(58, 69, 87)"/>
+          <path d="M66 35 C59 33 54 38 55 46 C56 52 64 52 69 47 C71 43 69 37 66 35 Z" fill="rgb(58, 69, 87)"/>
+          <!-- Bishop Mitre Hat -->
+          <path d="M33 34 C31 22 38 13 49 8 C60 13 67 22 65 34 C55 31 43 31 33 34 Z"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- Mitre Vertical & Rim Bands -->
+          <path d="M47 9 L47 31 M51 9 L51 31" stroke="#e2e8f0" stroke-width="1.8"/>
+          <path d="M33 31 C43 28 55 28 65 31" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+          <!-- Floppy Ears -->
+          <path d="M32 35 C25 34 22 41 26 46 C29 47 32 43 33 38 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3"/>
+          <path d="M66 35 C73 34 76 41 72 46 C69 47 66 43 65 38 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3"/>
+          <!-- Eyes -->
+          <ellipse cx="38" cy="44" rx="2.4" ry="3.2" fill="#0f172a"/>
+          <circle cx="37.3" cy="42.8" r="0.9" fill="#ffffff"/>
+          <ellipse cx="60" cy="44" rx="2.4" ry="3.2" fill="#0f172a"/>
+          <circle cx="59.3" cy="42.8" r="0.9" fill="#ffffff"/>
+          <!-- Nose & Y-Mouth -->
+          <path d="M46.5 50 C48 48.8 50 48.8 51.5 50 C50.5 52.5 47.5 52.5 46.5 50 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="1.5"/>
+          <path d="M49 52 L49 56.5 M45 57.5 Q47.5 59 49 56.5 Q50.5 59 53 57.5" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+          <!-- Whiskers -->
+          <path d="M39 51 L30 50 M39 54 L31 55 M59 51 L68 50 M59 54 L67 55" stroke="#e2e8f0" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+          <!-- Diagonal Scepter Held Across Chest -->
+          <line x1="38" y1="79" x2="69" y2="49" stroke="#e2e8f0" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Scepter Finial Orb -->
+          <g transform="translate(72, 46) rotate(45)">
+            <ellipse cx="0" cy="0" rx="4.5" ry="5.8" fill="rgb(58, 69, 87)" stroke="#e2e8f0" stroke-width="2.2"/>
+            <circle cx="0" cy="-6.8" r="1.8" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.8"/>
+          </g>
+          <!-- Both Front Arms & Paws Gripping Scepter -->
+          <path d="M32 58 C35 64 41 68 46 69 C48 69 49 66 46 65 C42 63 38 59 36 55"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M65 56 C63 60 58 62 53 62 C50 62 50 59 53 58 C57 57 60 55 62 52"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Bottom Feet -->
+          <path d="M27 81 L33 84 L36 82" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M71 81 L65 84 L62 82" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>

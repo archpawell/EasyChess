@@ -1,0 +1,52 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Floor Shadow -->
+          <ellipse cx="51" cy="85" rx="31" ry="5.5" fill="#3a3f47" opacity="0.16"/>
+
+          <!-- === TOP RIDER GUINEA PIG === -->
+          <!-- Rider Body on Back -->
+          <path d="M38 38 C38 25 48 18 61 20 C73 22 81 32 79 45 C78 52 72 56 64 55 C52 54 40 46 38 38 Z"
+                fill="#ffffff" stroke="#3a3f47" stroke-width="2.4" stroke-linejoin="round"/>
+          <!-- Rider Tunic / Shoulder Armor -->
+          <path d="M55 35 C63 35 69 39 69 47 L56 48 C54 43 54 38 55 35 Z" fill="rgb(225, 225, 225)" stroke="#3a3f47" stroke-width="2" stroke-linejoin="round"/>
+          <!-- Helmet Plume -->
+          <path d="M55 15 C53 8 61 6 66 11 C69 14 68 18 64 19 C61 16 58 15 55 15 Z"
+                fill="rgb(225, 225, 225)" stroke="#3a3f47" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- Medieval Visored Helmet -->
+          <path d="M37 26 C38 16 52 13 62 19 C66 22 68 28 65 35 L59 36 C59 30 56 26 50 25 L37 26 Z"
+                fill="rgb(225, 225, 225)" stroke="#3a3f47" stroke-width="2.3" stroke-linejoin="round"/>
+          <!-- Visor Slits -->
+          <path d="M36 25 C43 20 55 21 61 27 L48 27 Z" fill="#ffffff" stroke="#3a3f47" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="42" y1="23" x2="42" y2="25.5" stroke="#3a3f47" stroke-width="1.6"/>
+          <line x1="46" y1="22.5" x2="46" y2="25.5" stroke="#3a3f47" stroke-width="1.6"/>
+          <line x1="50" y1="23" x2="50" y2="25.5" stroke="#3a3f47" stroke-width="1.6"/>
+          <!-- Rider Face -->
+          <ellipse cx="42" cy="31" rx="1.8" ry="2.4" fill="#2b2f36"/>
+          <ellipse cx="54" cy="31.5" rx="2" ry="2.5" fill="#2b2f36"/>
+          <path d="M46 35 C47.5 34 49 34 50 35 C49 36.8 47 36.8 46 35 Z" fill="rgb(197, 197, 197)" stroke="#3a3f47" stroke-width="1.4"/>
+          <path d="M48 36.5 L48 39.5 M45.5 40 Q48 41.2 50.5 40" fill="none" stroke="#3a3f47" stroke-width="1.7" stroke-linecap="round"/>
+
+          <!-- === BOTTOM STEED GUINEA PIG (Facing 3/4 Left) === -->
+          <path d="M23 64 C20 52 26 42 39 41 C54 40 73 45 77 59 C80 69 75 78 65 80 C49 82 27 78 23 64 Z"
+                fill="#ffffff" stroke="#3a3f47" stroke-width="2.6" stroke-linejoin="round"/>
+          <!-- Steed Grey Cheek Patches -->
+          <path d="M26 46 C31 42 36 45 35 53 C34 58 28 58 25 53 Z" fill="rgb(225, 225, 225)"/>
+          <path d="M43 43 C51 43 56 49 54 57 C49 60 42 57 41 50 Z" fill="rgb(225, 225, 225)"/>
+          <!-- Rider Paws Resting on Steed's Head -->
+          <path d="M36 42 C34 45 38 47 41 44 Z" fill="#ffffff" stroke="#3a3f47" stroke-width="2"/>
+          <path d="M48 43 C46 46 51 48 54 45 Z" fill="#ffffff" stroke="#3a3f47" stroke-width="2"/>
+          <!-- Steed Ears -->
+          <path d="M27 45 C22 43 20 49 23 53 C25 54 28 50 27 45 Z" fill="rgb(197, 197, 197)" stroke="#3a3f47" stroke-width="2.2"/>
+          <path d="M51 45 C57 44 60 50 56 55 C53 56 50 51 51 45 Z" fill="rgb(197, 197, 197)" stroke="#3a3f47" stroke-width="2.2"/>
+          <!-- Steed Eyes -->
+          <ellipse cx="29" cy="53" rx="2.1" ry="2.8" fill="#2b2f36"/>
+          <circle cx="28.4" cy="52" r="0.8" fill="#ffffff"/>
+          <ellipse cx="44" cy="54" rx="2.3" ry="3" fill="#2b2f36"/>
+          <circle cx="43.3" cy="53" r="0.9" fill="#ffffff"/>
+          <!-- Steed Snout & Mouth -->
+          <path d="M33 59 C34.5 58 37 58 38 59 C37 61 34 61 33 59 Z" fill="rgb(197, 197, 197)" stroke="#3a3f47" stroke-width="1.5"/>
+          <path d="M35.5 60.8 L35.5 64.5 M32.5 65.2 Q35.5 66.8 38.5 65.2" fill="none" stroke="#3a3f47" stroke-width="1.9" stroke-linecap="round"/>
+          <!-- Steed Paws -->
+          <path d="M31 76 L30 82 L33 81 L35 82 L36 77" fill="#ffffff" stroke="#3a3f47" stroke-width="2.1" stroke-linejoin="round"/>
+          <path d="M48 78 L48 84 L51 83 L53 84 L55 78" fill="#ffffff" stroke="#3a3f47" stroke-width="2.1" stroke-linejoin="round"/>
+          <path d="M67 78 C69 82 74 81 74 77" fill="#ffffff" stroke="#3a3f47" stroke-width="2.1" stroke-linecap="round"/>
+        </svg>

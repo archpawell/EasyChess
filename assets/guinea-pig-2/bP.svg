@@ -1,0 +1,33 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Floor Shadow -->
+          <ellipse cx="51" cy="79" rx="26" ry="5.5" fill="#e2e8f0" opacity="0.16"/>
+          <!-- Main Body -->
+          <path d="M26 64 C21 51 24 36 33 30 C39 24 47 22 56 24 C67 26 75 36 74 52 C74 63 70 72 64 75 C56 77 35 77 26 64 Z"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.6" stroke-linejoin="round"/>
+          <!-- Grey Eye/Cheek Patches (leaving center white blaze) -->
+          <path d="M34 30 C41 26 47 28 48 39 C48 48 40 50 33 45 C29 41 30 33 34 30 Z" fill="rgb(58, 69, 87)"/>
+          <path d="M56 25 C65 27 72 35 71 45 C67 48 60 47 58 39 C56 32 55 27 56 25 Z" fill="rgb(58, 69, 87)"/>
+          <!-- Soft Rump/Belly Shading -->
+          <path d="M27 58 C29 68 41 74 58 73 C51 76 34 76 27 64 Z" fill="rgb(45, 56, 74)"/>
+          <!-- Tufted Hair Crown -->
+          <path d="M44 23 L47 20 L49 23 L53 20 L54 24" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Left & Right Floppy Ears -->
+          <path d="M35 31 C28 29 25 35 28 40 C30 42 34 39 36 35 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3" stroke-linejoin="round"/>
+          <path d="M64 29 C70 28 75 34 72 39 C69 41 66 37 64 33 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3" stroke-linejoin="round"/>
+          <!-- Eyes -->
+          <ellipse cx="44" cy="40" rx="2.5" ry="3.2" fill="#0f172a"/>
+          <circle cx="43.3" cy="38.8" r="0.9" fill="#ffffff"/>
+          <ellipse cx="62" cy="40" rx="2.4" ry="3.1" fill="#0f172a"/>
+          <circle cx="61.3" cy="38.8" r="0.9" fill="#ffffff"/>
+          <!-- Nose & Y-Mouth -->
+          <path d="M51 46 C53 45 56 45 57 46 C56 48.5 52 48.5 51 46 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="1.6"/>
+          <path d="M54 48 L54 52.5 M50 53.5 Q52.5 55 54 52.5 Q55.5 55 58 53.5" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+          <!-- Whiskers -->
+          <path d="M45 48 L37 47 M45 51 L38 51.5 M62 48 L70 47 M62 51 L69 51.5" stroke="#e2e8f0" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+          <!-- Fur Texture Strokes -->
+          <path d="M31 53 L29 57 M35 58 L33 62 M45 63 L44 67" stroke="#e2e8f0" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+          <!-- 3 Visible Paws with Toes -->
+          <path d="M30 72 C29 76 34 77 35 74" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M44 73 L43 78 L46 77 L47 78 L49 77 L50 73" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.1" stroke-linejoin="round"/>
+          <path d="M61 73 L61 78 L64 77 L65 78 L67 77 L66 72" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.1" stroke-linejoin="round"/>
+        </svg>

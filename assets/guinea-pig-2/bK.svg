@@ -1,0 +1,45 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Floor Shadow -->
+        <ellipse cx="50" cy="86" rx="36" ry="5.5" fill="#e2e8f0" opacity="0.16"/>
+        <!-- Flowing Royal Cape & White Trim -->
+        <path d="M28 52 C21 59 17 72 13 80 C11 83 15 86 21 84 C27 82 31 78 36 78 L64 78 C69 78 73 82 79 84 C85 86 89 83 87 80 C83 72 79 59 72 52 Z"
+              fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.6" stroke-linejoin="round"/>
+        <!-- Cape White Ermine Trim -->
+        <path d="M28 52 C22 61 18 73 14 81 C12 84 18 85 23 81 C28 77 32 65 37 61 L50 59 L63 61 C68 65 72 77 77 81 C82 85 88 84 86 81 C82 73 78 61 72 52 C64 57 57 59 50 59 C43 59 36 57 28 52 Z"
+              fill="#1e293b" stroke="#e2e8f0" stroke-width="2.3" stroke-linejoin="round"/>
+        <!-- Plump Body & Head Inside Cape -->
+        <path d="M27 69 C25 55 28 40 35 33 C43 28 57 28 65 33 C72 40 75 55 73 69 C70 79 62 82 50 82 C38 82 30 79 27 69 Z"
+              fill="#1e293b" stroke="#e2e8f0" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Symmetrical Grey Eye/Cheek Patches -->
+        <path d="M34 33 C42 31 46 37 45 45 C44 51 35 51 30 45 C28 40 30 35 34 33 Z" fill="rgb(58, 69, 87)"/>
+        <path d="M66 33 C58 31 54 37 55 45 C56 51 65 51 70 45 C72 40 70 35 66 33 Z" fill="rgb(58, 69, 87)"/>
+        <!-- Cape Shoulder Mantle & Clasp -->
+        <path d="M28 52 C34 58 42 60 50 60 C58 60 66 58 72 52 C69 60 60 64 50 64 C40 64 31 60 28 52 Z"
+              fill="rgb(58, 69, 87)" stroke="#e2e8f0" stroke-width="2.2" stroke-linejoin="round"/>
+        <ellipse cx="50" cy="60.5" rx="3.5" ry="2.6" fill="#1e293b" stroke="#e2e8f0" stroke-width="2"/>
+        <!-- High Royal King Crown with 3 Diamond Finials & Jeweled Band -->
+        <path d="M36 30 L33 16 L43 23 L50 13 L57 23 L67 16 L64 30 C55 28 45 28 36 30 Z"
+              fill="rgb(58, 69, 87)" stroke="#e2e8f0" stroke-width="2.4" stroke-linejoin="round"/>
+        <!-- Crown Band & Jewels -->
+        <path d="M36 26 C45 24 55 24 64 26" fill="none" stroke="#e2e8f0" stroke-width="1.8"/>
+        <!-- Diamond Finials on Crown Tips -->
+        <polygon points="50,8 52.5,11 50,14 47.5,11" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.7"/>
+        <polygon points="33,11.5 35,14 33,16.5 31,14" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.6"/>
+        <polygon points="67,11.5 69,14 67,16.5 65,14" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.6"/>
+        <!-- Floppy Ears -->
+        <path d="M34 33 C27 32 24 39 28 44 C31 45 34 41 35 36 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3"/>
+        <path d="M66 33 C73 32 76 39 72 44 C69 45 66 41 65 36 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3"/>
+        <!-- Eyes -->
+        <ellipse cx="40" cy="42" rx="2.5" ry="3.3" fill="#0f172a"/>
+        <circle cx="39.2" cy="40.8" r="0.9" fill="#ffffff"/>
+        <ellipse cx="60" cy="42" rx="2.5" ry="3.3" fill="#0f172a"/>
+        <circle cx="59.2" cy="40.8" r="0.9" fill="#ffffff"/>
+        <!-- Nose & Y-Mouth -->
+        <path d="M47.5 48 C49 46.8 51 46.8 52.5 48 C51.5 50.5 48.5 50.5 47.5 48 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="1.5"/>
+        <path d="M50 50 L50 54.5 M46 55.5 Q48.5 57 50 54.5 Q51.5 57 54 55.5" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+        <!-- Whiskers -->
+        <path d="M41 49 L32 48 M41 52 L33 53 M59 49 L68 48 M59 52 L67 53" stroke="#e2e8f0" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+        <!-- Front Standing Paws -->
+        <path d="M38 76 L37 84 L40 83 L42 84 L44 83 L44 77" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M62 76 L63 84 L60 83 L58 84 L56 83 L56 77" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linejoin="round"/>
+      </svg>

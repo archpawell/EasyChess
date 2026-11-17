@@ -1,0 +1,37 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Floor Shadow -->
+          <ellipse cx="50" cy="85" rx="30" ry="5.5" fill="#e2e8f0" opacity="0.16"/>
+          <!-- Plump Front Body -->
+          <path d="M22 69 C19 55 25 41 34 34 C43 29 57 29 66 34 C75 41 81 55 78 69 C75 79 66 83 50 83 C34 83 25 79 22 69 Z"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.6" stroke-linejoin="round"/>
+          <!-- Symmetrical Grey Eye/Cheek Patches -->
+          <path d="M33 34 C41 32 45 38 44 46 C43 52 34 52 29 46 C27 41 29 36 33 34 Z" fill="rgb(58, 69, 87)"/>
+          <path d="M67 34 C59 32 55 38 56 46 C57 52 66 52 71 46 C73 41 71 36 67 34 Z" fill="rgb(58, 69, 87)"/>
+          <!-- 5-Point Queen Crown with Pearls -->
+          <path d="M37 31 L35 20 L42 25 L46 18 L50 24 L54 18 L58 25 L65 20 L63 31 C54 29 46 29 37 31 Z"
+                fill="rgb(58, 69, 87)" stroke="#e2e8f0" stroke-width="2.3" stroke-linejoin="round"/>
+          <circle cx="35" cy="18.5" r="1.8" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.6"/>
+          <circle cx="46" cy="16.2" r="2" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.6"/>
+          <circle cx="54" cy="16.2" r="2" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.6"/>
+          <circle cx="65" cy="18.5" r="1.8" fill="#1e293b" stroke="#e2e8f0" stroke-width="1.6"/>
+          <!-- Floppy Ears -->
+          <path d="M33 34 C26 33 23 40 27 45 C30 46 33 42 34 37 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3"/>
+          <path d="M67 34 C74 33 77 40 73 45 C70 46 67 42 66 37 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="2.3"/>
+          <!-- Eyes -->
+          <ellipse cx="39" cy="43" rx="2.5" ry="3.3" fill="#0f172a"/>
+          <circle cx="38.2" cy="41.8" r="0.9" fill="#ffffff"/>
+          <ellipse cx="61" cy="43" rx="2.5" ry="3.3" fill="#0f172a"/>
+          <circle cx="60.2" cy="41.8" r="0.9" fill="#ffffff"/>
+          <!-- Snout & Y-Mouth -->
+          <path d="M47.5 49 C49 47.8 51 47.8 52.5 49 C51.5 51.5 48.5 51.5 47.5 49 Z" fill="rgb(84, 95, 113)" stroke="#e2e8f0" stroke-width="1.5"/>
+          <path d="M50 51 L50 55.5 M46 56.5 Q48.5 58 50 55.5 Q51.5 58 54 56.5" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round"/>
+          <!-- Whiskers -->
+          <path d="M40 50 L31 49 M40 53 L32 54 M60 50 L69 49 M60 53 L68 54" stroke="#e2e8f0" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+          <!-- Royal Scalloped Collar with Center Brooch -->
+          <path d="M29 53 C34 62 43 65 50 65 C57 65 66 62 71 53 C72 58 67 65 61 66 C57 67 54 64 50 65 C46 64 43 67 39 66 C33 65 28 58 29 53 Z"
+                fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linejoin="round"/>
+          <ellipse cx="50" cy="65.5" rx="3.4" ry="4.4" fill="rgb(58, 69, 87)" stroke="#e2e8f0" stroke-width="2"/>
+          <!-- Front Standing Paws -->
+          <path d="M38 76 L37 84 L40 83 L42 84 L44 83 L44 77" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M62 76 L63 84 L60 83 L58 84 L56 83 L56 77" fill="#1e293b" stroke="#e2e8f0" stroke-width="2.2" stroke-linejoin="round"/>
+        </svg>
