@@ -5,6 +5,7 @@
   <title>2D Top-Down PvP Chess</title>
   <script src="assets/vendor/tailwindcss.js"></script>
   <script src="assets/vendor/jszip.min.js"></script>
+  <script src="assets/vendor/animal-packs.js"></script>
   <link href="assets/vendor/fonts.css" rel="stylesheet">
   <style>
     * {
@@ -568,18 +569,43 @@
         </div>
       </section>
 
-      <!-- Figure Skin Packs Panel -->
+      <!-- Figure Skin Packs Panel (Independent White & Black Packs) -->
       <section class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg space-y-3">
-        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-          <svg class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
-          </svg>
-          Figure Skin Pack
-        </h2>
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+            <svg class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+            Figure Skin Packs
+          </h2>
+          <button id="btn-swap-skins" type="button" title="Swap White and Black Figure Packs" class="text-[11px] text-purple-300 hover:underline font-medium">Swap</button>
+        </div>
 
-        <div>
-          <label for="skin-select" class="block text-[11px] text-slate-400 mb-1">Active Skin (Switchable Anytime)</label>
-          <select id="skin-select" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-blue-500"><option value="guinea-pigs-2">Guinea Pig2 (Attached Pack)</option><option value="minimal-geometric">Classic Minimal (Default)</option><option value="topdown-tokens">Geometric Tokens</option><option value="nordic-symbols">Modern Line</option></select>
+        <div class="space-y-2.5">
+          <div>
+            <label for="skin-select-white" class="block text-[11px] text-slate-400 mb-1">"White" Figures Pack</label>
+            <select id="skin-select-white" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-blue-500">
+              <option value="hedgehogs">Hedgehogs (Attached Pack)</option>
+              <option value="mice">Mice (Attached Pack)</option>
+              <option value="cats">Cats (Attached Pack)</option>
+              <option value="guinea-pigs-2">Guinea Pig2 (Attached Pack)</option>
+              <option value="minimal-geometric">Classic Minimal</option>
+              <option value="topdown-tokens">Geometric Tokens</option>
+              <option value="nordic-symbols">Modern Line</option>
+            </select>
+          </div>
+          <div>
+            <label for="skin-select-black" class="block text-[11px] text-slate-400 mb-1">"Black" Figures Pack</label>
+            <select id="skin-select-black" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-blue-500">
+              <option value="hedgehogs">Hedgehogs (Attached Pack)</option>
+              <option value="mice">Mice (Attached Pack)</option>
+              <option value="cats">Cats (Attached Pack)</option>
+              <option value="guinea-pigs-2">Guinea Pig2 (Attached Pack)</option>
+              <option value="minimal-geometric">Classic Minimal</option>
+              <option value="topdown-tokens">Geometric Tokens</option>
+              <option value="nordic-symbols">Modern Line</option>
+            </select>
+          </div>
         </div>
 
         <button id="btn-open-skin-modal" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-purple-300 flex items-center justify-center gap-2 transition">
@@ -2053,8 +2079,13 @@
       { type: 'K', col: 2, row: 1 }
     ];
 
-    // Stores sliced grayscale/alpha canvases for the Guinea Pigs pack: { P, R, N, B, Q, K }
-    let guineaPigBaseTiles = null;
+    // Stores sliced grayscale/alpha canvases per animal pack: { P, R, N, B, Q, K }
+    const animalPackBaseTiles = {
+      'guinea-pigs-2': null,
+      'hedgehogs': null,
+      'mice': null,
+      'cats': null
+    };
     // Cache of tinted Data URLs keyed by `${packId}_${pieceCode}_${targetHex}`
     const tintedSpriteCache = new Map();
 
@@ -2467,9 +2498,9 @@
       const tiles = {};
 
       for (const slot of SPRITE_GRID_MAP) {
-        // Inset by 4% on each side to trim away the outer rounded card shadow/border
-        const padX = Math.floor(cellW * 0.045);
-        const padY = Math.floor(cellH * 0.055);
+        // Inset by 6.5% on each side to trim away the outer rounded card shadow/border
+        const padX = Math.floor(cellW * 0.065);
+        const padY = Math.floor(cellH * 0.065);
         const sx = slot.col * cellW + padX;
         const sy = slot.row * cellH + padY;
         const sw = cellW - padX * 2;
@@ -2493,7 +2524,7 @@
           const isBgCandidate = (idx) => {
             const p = idx * 4;
             const r = data[p], g = data[p + 1], b = data[p + 2];
-            return r >= 232 && g >= 232 && b >= 232;
+            return r >= 224 && g >= 224 && b >= 224;
           };
 
           // Seed flood-fill from all 4 edges of the tile
@@ -2681,55 +2712,82 @@
       return url;
     }
 
-    function createGuineaPigsSkin() {
+    function createSpriteSheetAnimalSkin(id, name, fallbackRenderer = renderGuineaPig2ExactSvg) {
       return {
-        id: 'guinea-pigs-2',
-        name: 'Guinea Pig2 (Attached Pack)',
-        type: 'guinea-pigs-2',
+        id,
+        name,
+        type: id,
         render: (pieceCode) => {
           const color = pieceCode[0];
           const type = pieceCode[1];
           const targetHex = color === 'w' ? whitePieceColor : blackPieceColor;
+          const tiles = animalPackBaseTiles[id];
 
-          // If the external 3x2 JPEG loaded cleanly without CORS/canvas taint, use sliced raster tiles
-          if (guineaPigBaseTiles && guineaPigBaseTiles[type]) {
-            const tintedUrl = getTintedSpriteDataUrl(`gp2_${type}`, guineaPigBaseTiles[type], targetHex);
+          if (tiles && tiles[type]) {
+            const tintedUrl = getTintedSpriteDataUrl(`${id}_${type}`, tiles[type], targetHex);
             return `<img src="${tintedUrl}" alt="${PIECE_LABELS[pieceCode]}" />`;
           }
-          // Guaranteed 1:1 exact high-detail Guinea Pig2 artwork matching the 6 attached images
-          return renderGuineaPig2ExactSvg(pieceCode);
+          return fallbackRenderer(pieceCode);
         }
       };
     }
 
-    function preloadGuineaPigSpriteSheet() {
+    function createGuineaPigsSkin() {
+      return createSpriteSheetAnimalSkin('guinea-pigs-2', 'Guinea Pig2 (Attached Pack)', renderGuineaPig2ExactSvg);
+    }
+
+    function createHedgehogsSkin() {
+      return createSpriteSheetAnimalSkin('hedgehogs', 'Hedgehogs (Attached Pack)', renderGuineaPig2ExactSvg);
+    }
+
+    function createMiceSkin() {
+      return createSpriteSheetAnimalSkin('mice', 'Mice (Attached Pack)', renderGuineaPig2ExactSvg);
+    }
+
+    function createCatsSkin() {
+      return createSpriteSheetAnimalSkin('cats', 'Cats (Attached Pack)', renderGuineaPig2ExactSvg);
+    }
+
+    function preloadSheetIntoPack(packId, primarySrc, fallbackSrc = null) {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
         try {
-          guineaPigBaseTiles = slice3x2SpriteSheet(img, true);
+          animalPackBaseTiles[packId] = slice3x2SpriteSheet(img, true);
           tintedSpriteCache.clear();
           renderAll();
         } catch (err) {
-          guineaPigBaseTiles = null;
+          animalPackBaseTiles[packId] = null;
         }
       };
-      img.onerror = () => {
-        // Also try fallback filename if needed
-        const fallbackImg = new Image();
-        fallbackImg.crossOrigin = 'anonymous';
-        fallbackImg.onload = () => {
-          try {
-            guineaPigBaseTiles = slice3x2SpriteSheet(fallbackImg, true);
-            tintedSpriteCache.clear();
-            renderAll();
-          } catch (e) {
-            guineaPigBaseTiles = null;
-          }
+      if (fallbackSrc) {
+        img.onerror = () => {
+          const fallbackImg = new Image();
+          fallbackImg.crossOrigin = 'anonymous';
+          fallbackImg.onload = () => {
+            try {
+              animalPackBaseTiles[packId] = slice3x2SpriteSheet(fallbackImg, true);
+              tintedSpriteCache.clear();
+              renderAll();
+            } catch (e) {
+              animalPackBaseTiles[packId] = null;
+            }
+          };
+          fallbackImg.src = fallbackSrc;
         };
-        fallbackImg.src = 'Gemini_Generated_Image_if56f5if56f5if56.jpeg';
-      };
-      img.src = GUINEA_PIG_SHEET_SRC;
+      }
+      img.src = primarySrc;
+    }
+
+    function preloadAllAnimalSpriteSheets() {
+      preloadSheetIntoPack('guinea-pigs-2', GUINEA_PIG_SHEET_SRC, 'Gemini_Generated_Image_if56f5if56f5if56.jpeg');
+      const embedded = window.ANIMAL_PACK_SHEETS || {};
+      if (embedded.hedgehogs) preloadSheetIntoPack('hedgehogs', embedded.hedgehogs, 'assets/hedgehogs/sheet.jpg');
+      else preloadSheetIntoPack('hedgehogs', 'assets/hedgehogs/sheet.jpg');
+      if (embedded.mice) preloadSheetIntoPack('mice', embedded.mice, 'assets/mice/sheet.jpg');
+      else preloadSheetIntoPack('mice', 'assets/mice/sheet.jpg');
+      if (embedded.cats) preloadSheetIntoPack('cats', embedded.cats, 'assets/cats/sheet.jpg');
+      else preloadSheetIntoPack('cats', 'assets/cats/sheet.jpg');
     }
 
     /**
@@ -3292,6 +3350,9 @@
 
     // Skin Packs Registry (Stored in memory + localStorage)
     const defaultSkins = [
+      createHedgehogsSkin(),
+      createMiceSkin(),
+      createCatsSkin(),
       createGuineaPigsSkin(),
       createMinimalistGeometricSkin(),
       createTopDownTokenSkin(),
@@ -3303,8 +3364,9 @@
       if (saved) customSkins = JSON.parse(saved);
     } catch (e) { /* ignore storage restrictions */ }
 
-    // Default to the newly requested Guinea Pig2 pack so it's active immediately
-    let activeSkinId = 'guinea-pigs-2';
+    // Separate figure packs for White and Black (allows mixing packs in one game)
+    let whiteSkinId = 'hedgehogs';
+    let blackSkinId = 'cats';
 
     // Game State & History Timeline
     // history[0] is the initial state (or handicap setup state), history[i] is state after i-th half-move
@@ -3337,7 +3399,8 @@
     const turnDotEl = document.getElementById('turn-indicator-dot');
     const turnLogContainerEl = document.getElementById('turn-log-container');
     const moveCountBadgeEl = document.getElementById('move-count-badge');
-    const skinSelectEl = document.getElementById('skin-select');
+    const skinSelectWhiteEl = document.getElementById('skin-select-white');
+    const skinSelectBlackEl = document.getElementById('skin-select-black');
 
     function initHistory() {
       history = [{
@@ -3347,23 +3410,24 @@
       currentHistoryIndex = 0;
     }
 
-    function getActiveSkin() {
+    function getActiveSkinForColor(color) {
+      const targetId = color === 'w' ? whiteSkinId : blackSkinId;
       const all = [...defaultSkins, ...customSkins];
-      return all.find(s => s.id === activeSkinId) || defaultSkins[0];
+      return all.find(s => s.id === targetId) || defaultSkins[0];
     }
 
     function renderPieceMarkup(pieceCode) {
       if (!pieceCode) return '';
-      const activeSkin = getActiveSkin();
+      const color = pieceCode[0];
+      const activeSkin = getActiveSkinForColor(color);
       const fallbackSkin = defaultSkins[0];
 
-      // Built-in dynamic SVG skins or Guinea Pigs sprite skin
+      // Built-in dynamic SVG skins or animal sprite skins
       if (typeof activeSkin.render === 'function') {
         return activeSkin.render(pieceCode);
       }
 
       // User-created custom skin pack
-      const color = pieceCode[0];
       const targetHex = color === 'w' ? whitePieceColor : blackPieceColor;
       const asset = (activeSkin.pieces && activeSkin.pieces[pieceCode]) || fallbackSkin.render(pieceCode);
 
@@ -3922,14 +3986,19 @@
      * =========================================================================
      */
     function populateSkinDropdown() {
-      skinSelectEl.innerHTML = '';
       const all = [...defaultSkins, ...customSkins];
-      all.forEach(skin => {
-        const opt = document.createElement('option');
-        opt.value = skin.id;
-        opt.textContent = skin.name;
-        if (skin.id === activeSkinId) opt.selected = true;
-        skinSelectEl.appendChild(opt);
+      [
+        { el: skinSelectWhiteEl, selectedId: whiteSkinId },
+        { el: skinSelectBlackEl, selectedId: blackSkinId }
+      ].forEach(({ el, selectedId }) => {
+        el.innerHTML = '';
+        all.forEach(skin => {
+          const opt = document.createElement('option');
+          opt.value = skin.id;
+          opt.textContent = skin.name;
+          if (skin.id === selectedId) opt.selected = true;
+          el.appendChild(opt);
+        });
       });
     }
 
@@ -3942,7 +4011,7 @@
       grid.innerHTML = '';
 
       // If currently using a custom skin, pre-fill its slots for easy editing
-      const existingCustom = customSkins.find(s => s.id === activeSkinId);
+      const existingCustom = customSkins.find(s => s.id === whiteSkinId) || customSkins.find(s => s.id === blackSkinId);
       draftCustomPieces = existingCustom ? { ...existingCustom.pieces } : {};
       draftCustomTintable = existingCustom ? !!existingCustom.tintable : false;
       document.getElementById('custom-skin-name').value = existingCustom
@@ -4083,7 +4152,8 @@
         // Fallback if images exceed localStorage quota; still works in current session
       }
 
-      activeSkinId = targetSkin.id;
+      whiteSkinId = targetSkin.id;
+      blackSkinId = targetSkin.id;
       populateSkinDropdown();
 
       const modal = document.getElementById('skin-modal');
@@ -4153,9 +4223,12 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
 - Provide an **"Enter Handicap Edit Mode"** button that lets players click any non-King figure on the board from one or both sides to remove it (or click an emptied square to restore it) before starting the match.
 - Allow choosing whether White or Black moves first in the handicap game, automatically syncing castling rights with the remaining rooks.
 
-## 8. Switchable Custom Figure Skin Packs & Guinea Pig2 Pack
-- Allow switching figure skin packs at any time—even mid-game—updating the board, captured trays, and promotion modal immediately:
-  1. **Guinea Pig2 (Attached Pack — Default)**:
+## 8. Switchable Custom Figure Skin Packs & Animal Packs
+- Allow switching White and Black figure skin packs independently at any time—even mid-game—updating the board, captured trays, and promotion modal immediately (with a quick Swap button):
+  1. **Hedgehogs (Attached Pack — Default White)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
+  2. **Mice (Attached Pack)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
+  3. **Cats (Attached Pack — Default Black)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
+  4. **Guinea Pig2 (Attached Pack)**:
      - Supports slicing the 3x2 sprite sheet (\`Gemini_Generated_Image_if56f5if56f5if56_2.jpeg\`, ordered Top: \`[Pawn, Rook, Knight]\`, Bottom: \`[Bishop, Queen, King]\`) with edge flood-fill background removal and dynamic luminance tinting, paired with 1:1 matching vector illustrations of all 6 Guinea Pig2 characters:
        - **Pawn**: 3/4 right-facing plump guinea pig with center white blaze and grey cheek patches.
        - **Rook**: 3/4 right-facing guinea pig wearing a stone castle rook turret crown.
@@ -4163,10 +4236,10 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
        - **Bishop**: Tall front-facing guinea pig wearing a bishop mitre hat and holding a diagonal scepter with both front paws.
        - **Queen**: Front-facing plump guinea pig wearing a 5-point ball-tipped crown and scalloped collar with an oval brooch.
        - **King**: Front-facing majestic guinea pig wearing a 3-peak diamond crown and full royal ermine-trimmed cape.
-  2. **Classic Minimal**: Clean geometric chess silhouettes.
-  3. **Geometric Tokens**: Top-down circular tokens with typography and dashed inner rings.
-  4. **Modern Line**: Nordic minimalist symbol tokens.
-  5. **Custom Skin Pack Editor Modal**:
+  5. **Classic Minimal**: Clean geometric chess silhouettes.
+  6. **Geometric Tokens**: Top-down circular tokens with typography and dashed inner rings.
+  7. **Modern Line**: Nordic minimalist symbol tokens.
+  8. **Custom Skin Pack Editor Modal**:
      - Includes a **Quick 3x2 Sprite Sheet Auto-Slicer** (upload any 3x2 character sheet image, auto-remove white card background, and enable dynamic Figure Color tinting) plus 12 individual piece upload/SVG/URL slots persisted to \`localStorage\`.`;
 
     const PROJECT_README_MD = `# 2D Top-Down PvP Chess (Antigravity Ready Project)
@@ -4393,9 +4466,20 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       });
     });
 
-    // Skin Selector (Mid-game switching)
-    skinSelectEl.addEventListener('change', (e) => {
-      activeSkinId = e.target.value;
+    // Independent White & Black Skin Selectors (Mid-game switching)
+    skinSelectWhiteEl.addEventListener('change', (e) => {
+      whiteSkinId = e.target.value;
+      renderAll();
+    });
+    skinSelectBlackEl.addEventListener('change', (e) => {
+      blackSkinId = e.target.value;
+      renderAll();
+    });
+    document.getElementById('btn-swap-skins').addEventListener('click', () => {
+      const prevWhite = whiteSkinId;
+      whiteSkinId = blackSkinId;
+      blackSkinId = prevWhite;
+      populateSkinDropdown();
       renderAll();
     });
 
@@ -4481,7 +4565,7 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
     });
 
     // Bootstrap Application
-    preloadGuineaPigSpriteSheet();
+    preloadAllAnimalSpriteSheets();
     populateSkinDropdown();
     initHistory();
     renderAll();
