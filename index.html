@@ -206,6 +206,23 @@
       box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.18), 0 8px 10px -6px rgba(15, 23, 42, 0.12), 0 0 0 4px #cbd5e1;
     }
 
+    /* Bottom-Right Language Switcher ("РУС" / "ENG") */
+    #btn-lang-toggle .lang-pill-active {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
+    #btn-lang-toggle .lang-pill-inactive {
+      color: #94a3b8;
+    }
+    .light-theme #btn-lang-toggle {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.12) !important;
+    }
+    .light-theme #btn-lang-toggle .lang-pill-inactive {
+      color: #475569 !important;
+    }
+
     @keyframes pulseAttack {
       0%, 100% { opacity: 0.92; }
       50% { opacity: 1; }
@@ -360,7 +377,7 @@
   <!-- Top Header (Floats over top of board; click Bishop to minimize/restore) -->
   <header id="top-header" class="fixed top-0 left-0 right-0 z-40 bg-slate-900/90 border-b border-slate-800 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 backdrop-blur-md transition">
     <div class="flex items-center gap-3">
-      <button id="btn-toggle-topbar" type="button" title="Show / Hide Top Bar (Click Bishop)" class="w-9 h-9 rounded-xl bg-blue-600/20 hover:bg-blue-600/35 border border-blue-500/40 flex items-center justify-center text-blue-400 transition shrink-0" style="pointer-events: auto;">
+      <button id="btn-toggle-topbar" type="button" data-i18n-title="topbarToggleTitle" title="Show / Hide Top Bar (Click Bishop)" class="w-9 h-9 rounded-xl bg-blue-600/20 hover:bg-blue-600/35 border border-blue-500/40 flex items-center justify-center text-blue-400 transition shrink-0" style="pointer-events: auto;">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="3.5" r="1.4"></circle>
           <path d="M12 5c-3 2.5-4.5 5.2-4.5 8 0 2 1.2 3.5 2.5 4.2L8.5 19h7L14 17.2c1.3-.7 2.5-2.2 2.5-4.2 0-2.8-1.5-5.5-4.5-8z"></path>
@@ -369,8 +386,8 @@
         </svg>
       </button>
       <div id="topbar-title-group">
-        <h1 class="text-base sm:text-lg font-bold tracking-tight text-white leading-tight">2D Top-Down Chess</h1>
-        <p class="text-xs text-slate-400">Local Pass &amp; Play • Customizable Board &amp; Skins</p>
+        <h1 data-i18n="appTitle" class="text-base sm:text-lg font-bold tracking-tight text-white leading-tight">2D Top-Down Chess</h1>
+        <p data-i18n="appSubtitle" class="text-xs text-slate-400">Local Pass &amp; Play • Customizable Board &amp; Skins</p>
       </div>
     </div>
 
@@ -390,11 +407,11 @@
         </svg>
         <span id="theme-toggle-label">Light Theme</span>
       </button>
-      <button id="btn-open-export-modal" title="Export Project ZIP &amp; Full Antigravity Prompt" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 flex items-center gap-1.5 transition">
+      <button id="btn-open-export-modal" data-i18n-title="exportBtnTitle" title="Export Project ZIP &amp; Full Antigravity Prompt" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 flex items-center gap-1.5 transition">
         <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        <span>Export Antigravity ZIP &amp; Prompt</span>
+        <span data-i18n="exportBtnLabel">Export Antigravity ZIP &amp; Prompt</span>
       </button>
     </div>
   </header>
@@ -411,7 +428,7 @@
           <svg class="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
           </svg>
-          Tactical Overlays
+          <span data-i18n="tacticalOverlays">Tactical Overlays</span>
         </h2>
 
         <!-- Toggle: Show Active Piece Moves (Blue Dot) -->
@@ -419,8 +436,8 @@
           <div class="flex items-center gap-2.5">
             <span class="w-3.5 h-3.5 rounded-full bg-blue-600 ring-2 ring-white/60 inline-block shrink-0"></span>
             <div>
-              <div class="text-sm font-medium text-slate-200">Active Piece Moves</div>
-              <div class="text-[11px] text-slate-400">Blue dots on valid target cells</div>
+              <div data-i18n="validMovesTitle" class="text-sm font-medium text-slate-200">Active Piece Moves</div>
+              <div data-i18n="validMovesDesc" class="text-[11px] text-slate-400">Blue dots on valid target cells</div>
             </div>
           </div>
           <input type="checkbox" id="toggle-valid-moves" checked="" class="w-4 h-4 accent-blue-600 rounded cursor-pointer">
@@ -431,8 +448,8 @@
           <div class="flex items-center gap-2.5">
             <span class="w-3.5 h-3.5 rounded-full ring-2 ring-white/60 inline-block shrink-0" style="background: linear-gradient(135deg, #2563eb 50%, #ef4444 50%);"></span>
             <div>
-              <div class="text-sm font-medium text-slate-200">Show dangerous turns</div>
-              <div class="text-[11px] text-slate-400">Blue dot = safe, red dot = dangerous</div>
+              <div data-i18n="dangerousTurnsTitle" class="text-sm font-medium text-slate-200">Show dangerous turns</div>
+              <div data-i18n="dangerousTurnsDesc" class="text-[11px] text-slate-400">Blue dot = safe, red dot = dangerous</div>
             </div>
           </div>
           <input type="checkbox" id="toggle-dangerous-turns" checked="" class="w-4 h-4 accent-blue-600 rounded cursor-pointer">
@@ -443,8 +460,8 @@
           <div class="flex items-center gap-2.5">
             <span class="w-3.5 h-3.5 rounded border border-red-400 inline-block shrink-0" style="background-color: rgba(239, 68, 68, 0.35);"></span>
             <div>
-              <div class="text-sm font-medium text-slate-200">Enemy Attack Zones</div>
-              <div class="text-[11px] text-slate-400">65% transparent red on threatened cells</div>
+              <div data-i18n="enemyAttacksTitle" class="text-sm font-medium text-slate-200">Enemy Attack Zones</div>
+              <div data-i18n="enemyAttacksDesc" class="text-[11px] text-slate-400">65% transparent red on threatened cells</div>
             </div>
           </div>
           <input type="checkbox" id="toggle-enemy-attacks" class="w-4 h-4 accent-red-500 rounded cursor-pointer">
@@ -455,8 +472,8 @@
           <div class="flex items-center gap-2.5">
             <span class="w-3.5 h-3.5 rounded bg-slate-700 text-[9px] font-bold flex items-center justify-center text-slate-300 shrink-0">a1</span>
             <div>
-              <div class="text-sm font-medium text-slate-200">Board Coordinates</div>
-              <div class="text-[11px] text-slate-400">Show ranks (1-8) &amp; files (a-h)</div>
+              <div data-i18n="boardCoordsTitle" class="text-sm font-medium text-slate-200">Board Coordinates</div>
+              <div data-i18n="boardCoordsDesc" class="text-[11px] text-slate-400">Show ranks (1-8) &amp; files (a-h)</div>
             </div>
           </div>
           <input type="checkbox" id="toggle-coords" checked="" class="w-4 h-4 accent-blue-600 rounded cursor-pointer">
@@ -470,21 +487,21 @@
             <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
             </svg>
-            Field Colors
+            <span data-i18n="fieldColors">Field Colors</span>
           </h2>
-          <button id="btn-reset-colors" class="text-[11px] text-slate-400 hover:text-white underline">Reset</button>
+          <button id="btn-reset-colors" data-i18n="reset" class="text-[11px] text-slate-400 hover:text-white underline">Reset</button>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/70">
-            <label for="color-light" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"White" Cells</label>
+            <label for="color-light" data-i18n="whiteCells" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"White" Cells</label>
             <div class="flex items-center gap-2">
               <input type="color" id="color-light" value="#e2e8f0" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0 p-0">
               <span id="color-light-hex" class="text-xs mono text-slate-300 uppercase">#E2E8F0</span>
             </div>
           </div>
           <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/70">
-            <label for="color-dark" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"Black" Cells</label>
+            <label for="color-dark" data-i18n="blackCells" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"Black" Cells</label>
             <div class="flex items-center gap-2">
               <input type="color" id="color-dark" value="#475569" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0 p-0">
               <span id="color-dark-hex" class="text-xs mono text-slate-300 uppercase">#475569</span>
@@ -494,21 +511,21 @@
 
         <!-- Theme Presets -->
         <div>
-          <span class="block text-[11px] text-slate-400 mb-1.5">Quick Presets</span>
+          <span data-i18n="quickPresets" class="block text-[11px] text-slate-400 mb-1.5">Quick Presets</span>
           <div class="grid grid-cols-4 gap-1.5">
-            <button data-light="#e2e8f0" data-dark="#475569" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Slate Minimal">
+            <button data-light="#e2e8f0" data-dark="#475569" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="presetSlate" title="Slate Minimal">
               <span class="w-1/2 h-full" style="background:#e2e8f0"></span>
               <span class="w-1/2 h-full" style="background:#475569"></span>
             </button>
-            <button data-light="#ebecd0" data-dark="#739552" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Tournament Green">
+            <button data-light="#ebecd0" data-dark="#739552" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="presetGreen" title="Tournament Green">
               <span class="w-1/2 h-full" style="background:#ebecd0"></span>
               <span class="w-1/2 h-full" style="background:#739552"></span>
             </button>
-            <button data-light="#f0d9b5" data-dark="#b58863" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Classic Wood">
+            <button data-light="#f0d9b5" data-dark="#b58863" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="presetWood" title="Classic Wood">
               <span class="w-1/2 h-full" style="background:#f0d9b5"></span>
               <span class="w-1/2 h-full" style="background:#b58863"></span>
             </button>
-            <button data-light="#dee3e6" data-dark="#8ca2ad" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Arctic Ice">
+            <button data-light="#dee3e6" data-dark="#8ca2ad" class="theme-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="presetArctic" title="Arctic Ice">
               <span class="w-1/2 h-full" style="background:#dee3e6"></span>
               <span class="w-1/2 h-full" style="background:#8ca2ad"></span>
             </button>
@@ -523,21 +540,21 @@
             <svg class="w-4 h-4 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
             </svg>
-            Figure Colors
+            <span data-i18n="figureColors">Figure Colors</span>
           </h2>
-          <button id="btn-reset-piece-colors" class="text-[11px] text-slate-400 hover:text-white underline">Reset</button>
+          <button id="btn-reset-piece-colors" data-i18n="reset" class="text-[11px] text-slate-400 hover:text-white underline">Reset</button>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/70">
-            <label for="color-piece-white" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"White" Figures</label>
+            <label for="color-piece-white" data-i18n="whiteFigures" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"White" Figures</label>
             <div class="flex items-center gap-2">
               <input type="color" id="color-piece-white" value="#ffffff" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0 p-0">
               <span id="color-piece-white-hex" class="text-xs mono text-slate-300 uppercase">#FFFFFF</span>
             </div>
           </div>
           <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/70">
-            <label for="color-piece-black" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"Black" Figures</label>
+            <label for="color-piece-black" data-i18n="blackFigures" class="block text-[11px] text-slate-400 mb-1.5 font-medium">"Black" Figures</label>
             <div class="flex items-center gap-2">
               <input type="color" id="color-piece-black" value="#a3a3a3" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0 p-0">
               <span id="color-piece-black-hex" class="text-xs mono text-slate-300 uppercase">#A3A3A3</span>
@@ -547,21 +564,21 @@
 
         <!-- Figure Color Presets -->
         <div>
-          <span class="block text-[11px] text-slate-400 mb-1.5">Figure Color Presets</span>
+          <span data-i18n="figureColorPresets" class="block text-[11px] text-slate-400 mb-1.5">Figure Color Presets</span>
           <div class="grid grid-cols-4 gap-1.5">
-            <button data-wpiece="#ffffff" data-bpiece="#a3a3a3" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Classic Ivory &amp; Gray">
+            <button data-wpiece="#ffffff" data-bpiece="#a3a3a3" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="fpresetIvoryGray" title="Classic Ivory &amp; Gray">
               <span class="w-1/2 h-full" style="background:#ffffff"></span>
               <span class="w-1/2 h-full" style="background:#a3a3a3"></span>
             </button>
-            <button data-wpiece="#fbcfe8" data-bpiece="#4c1d95" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Pastel Pink &amp; Royal Violet">
+            <button data-wpiece="#fbcfe8" data-bpiece="#4c1d95" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="fpresetPinkViolet" title="Pastel Pink &amp; Royal Violet">
               <span class="w-1/2 h-full" style="background:#fbcfe8"></span>
               <span class="w-1/2 h-full" style="background:#4c1d95"></span>
             </button>
-            <button data-wpiece="#fde68a" data-bpiece="#991b1b" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Imperial Gold &amp; Crimson">
+            <button data-wpiece="#fde68a" data-bpiece="#991b1b" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="fpresetGoldCrimson" title="Imperial Gold &amp; Crimson">
               <span class="w-1/2 h-full" style="background:#fde68a"></span>
               <span class="w-1/2 h-full" style="background:#991b1b"></span>
             </button>
-            <button data-wpiece="#bae6fd" data-bpiece="#065f46" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" title="Sky Cyan &amp; Emerald">
+            <button data-wpiece="#bae6fd" data-bpiece="#065f46" class="piece-preset-btn h-7 rounded-lg border border-slate-600 overflow-hidden flex" data-i18n-title="fpresetCyanEmerald" title="Sky Cyan &amp; Emerald">
               <span class="w-1/2 h-full" style="background:#bae6fd"></span>
               <span class="w-1/2 h-full" style="background:#065f46"></span>
             </button>
@@ -576,14 +593,14 @@
             <svg class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
             </svg>
-            Figure Skin Packs
+            <span data-i18n="figureSkinPacks">Figure Skin Packs</span>
           </h2>
-          <button id="btn-swap-skins" type="button" title="Swap White and Black Figure Packs" class="text-[11px] text-purple-300 hover:underline font-medium">Swap</button>
+          <button id="btn-swap-skins" type="button" data-i18n="swap" data-i18n-title="swapSkinsTitle" title="Swap White and Black Figure Packs" class="text-[11px] text-purple-300 hover:underline font-medium">Swap</button>
         </div>
 
         <div class="space-y-2.5">
           <div>
-            <label for="skin-select-white" class="block text-[11px] text-slate-400 mb-1">"White" Figures Pack</label>
+            <label for="skin-select-white" data-i18n="whiteFiguresPack" class="block text-[11px] text-slate-400 mb-1">"White" Figures Pack</label>
             <select id="skin-select-white" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-blue-500">
               <option value="hedgehogs">Hedgehogs (Attached Pack)</option>
               <option value="mice">Mice (Attached Pack)</option>
@@ -597,7 +614,7 @@
             </select>
           </div>
           <div>
-            <label for="skin-select-black" class="block text-[11px] text-slate-400 mb-1">"Black" Figures Pack</label>
+            <label for="skin-select-black" data-i18n="blackFiguresPack" class="block text-[11px] text-slate-400 mb-1">"Black" Figures Pack</label>
             <select id="skin-select-black" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-blue-500">
               <option value="hedgehogs">Hedgehogs (Attached Pack)</option>
               <option value="mice">Mice (Attached Pack)</option>
@@ -616,7 +633,7 @@
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 5v14M5 12h14"></path>
           </svg>
-          Add / Edit Custom Skin Pack
+          <span data-i18n="addEditCustomSkin">Add / Edit Custom Skin Pack</span>
         </button>
       </section>
 
@@ -627,12 +644,12 @@
             <svg class="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
             </svg>
-            Handicap Setup
+            <span data-i18n="handicapSetup">Handicap Setup</span>
           </h2>
-          <span id="handicap-badge" class="hidden text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">Editing</span>
+          <span id="handicap-badge" data-i18n="editing" class="hidden text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">Editing</span>
         </div>
 
-        <p class="text-xs text-slate-400 leading-relaxed">
+        <p data-i18n="handicapDesc" class="text-xs text-slate-400 leading-relaxed">
           Remove any non-King pieces from one or both sides to play with odds/handicap.
         </p>
 
@@ -642,14 +659,14 @@
 
         <div id="handicap-controls" class="hidden space-y-2 pt-1">
           <div class="flex items-center justify-between text-xs text-slate-300 bg-slate-800/80 px-3 py-2 rounded-lg">
-            <span>Removed pieces: <strong id="handicap-removed-count" class="text-amber-400">0</strong></span>
-            <button id="btn-restore-handicap" class="text-blue-400 hover:underline font-medium">Restore All</button>
+            <span><span data-i18n="removedPiecesLabel">Removed pieces:</span> <strong id="handicap-removed-count" class="text-amber-400">0</strong></span>
+            <button id="btn-restore-handicap" data-i18n="restoreAll" class="text-blue-400 hover:underline font-medium">Restore All</button>
           </div>
           <div class="flex items-center justify-between text-xs text-slate-300 bg-slate-800/80 px-3 py-2 rounded-lg">
-            <span>Starting Turn:</span>
+            <span data-i18n="startingTurnLabel">Starting Turn:</span>
             <select id="handicap-start-turn" class="bg-slate-900 border border-slate-700 rounded px-2 py-0.5 text-xs text-white">
-              <option value="w">White</option>
-              <option value="b">Black</option>
+              <option value="w" data-i18n="white">White</option>
+              <option value="b" data-i18n="black">Black</option>
             </select>
           </div>
         </div>
@@ -668,7 +685,7 @@
           <span id="top-material-adv" class="text-xs font-bold text-emerald-400 mono"></span>
         </div>
         <!-- Captured pieces lost by the opposite player (captured by top player) -->
-        <div id="top-captured-list" class="flex items-center flex-wrap gap-0.5 min-h-[24px] justify-end" title="Figures captured by this player (50% size, 50% opacity)"></div>
+        <div id="top-captured-list" class="flex items-center flex-wrap gap-0.5 min-h-[24px] justify-end" data-i18n-title="capturedByPlayerTitle" title="Figures captured by this player (50% size, 50% opacity)"></div>
       </div>
 
       <!-- 8x8 Chess Board -->
@@ -1801,17 +1818,17 @@
           <span id="bottom-player-name" class="text-sm font-semibold text-slate-200">White</span>
           <span id="bottom-material-adv" class="text-xs font-bold text-emerald-400 mono"></span>
         </div>
-        <div id="bottom-captured-list" class="flex items-center flex-wrap gap-0.5 min-h-[24px] justify-end" title="Figures captured by this player (50% size, 50% opacity)"></div>
+        <div id="bottom-captured-list" class="flex items-center flex-wrap gap-0.5 min-h-[24px] justify-end" data-i18n-title="capturedByPlayerTitle" title="Figures captured by this player (50% size, 50% opacity)"></div>
       </div>
 
       <!-- Lost Figures Dedicated Summary (Explicitly showing lost figures by each player at 50% size & 50% transparency) -->
       <div class="w-full max-w-[min(86vh,880px)] grid grid-cols-2 gap-2.5 mt-2">
         <div id="lost-by-white-card" class="bg-slate-900/70 border border-slate-800/90 rounded-xl px-3 py-2 flex flex-col gap-1">
-          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Lost by White</span>
+          <span data-i18n="lostByWhite" class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Lost by White</span>
           <div id="lost-by-white" class="flex items-center flex-wrap gap-1 min-h-[24px]"><span class="text-[11px] text-slate-600 italic">None</span></div>
         </div>
         <div id="lost-by-black-card" class="bg-slate-900/70 border border-slate-800/90 rounded-xl px-3 py-2 flex flex-col gap-1">
-          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Lost by Black</span>
+          <span data-i18n="lostByBlack" class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Lost by Black</span>
           <div id="lost-by-black" class="flex items-center flex-wrap gap-1 min-h-[24px]"><span class="text-[11px] text-slate-600 italic">None</span></div>
         </div>
       </div>
@@ -1823,13 +1840,13 @@
       <section class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg flex flex-col h-[560px] lg:h-[760px]">
         <!-- Board Actions at Top of Turns Log -->
         <div class="grid grid-cols-2 gap-2 pb-3 mb-3 border-b border-slate-800">
-          <button id="btn-flip-board" title="Flip Board Orientation" class="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center justify-center gap-1.5 transition">
+          <button id="btn-flip-board" data-i18n-title="flipBoardTitle" title="Flip Board Orientation" class="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 flex items-center justify-center gap-1.5 transition">
             <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
             </svg>
-            <span>Flip</span>
+            <span data-i18n="flip">Flip</span>
           </button>
-          <button id="btn-new-game" class="py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white shadow-sm flex items-center justify-center gap-1.5 transition">
+          <button id="btn-new-game" data-i18n="newGame" class="py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white shadow-sm flex items-center justify-center gap-1.5 transition">
             New Game
           </button>
         </div>
@@ -1839,27 +1856,27 @@
             <svg class="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line>
             </svg>
-            Turns Log
+            <span data-i18n="turnsLog">Turns Log</span>
           </h2>
           <span id="move-count-badge" class="text-[11px] mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded-md border border-slate-700">0 moves</span>
         </div>
 
         <!-- Undo Controls (Cancel any amount of turns) -->
         <div class="grid grid-cols-3 gap-1.5 py-3 border-b border-slate-800">
-          <button id="btn-undo-all" title="Cancel all turns (Back to start)" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-medium text-slate-200 flex items-center justify-center gap-1 transition" disabled="">
+          <button id="btn-undo-all" data-i18n-title="undoAllTitle" title="Cancel all turns (Back to start)" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-medium text-slate-200 flex items-center justify-center gap-1 transition" disabled="">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline>
             </svg>
-            Start
+            <span data-i18n="startBtn">Start</span>
           </button>
-          <button id="btn-undo-1" title="Cancel last turn" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-semibold text-amber-300 flex items-center justify-center gap-1 transition" disabled="">
+          <button id="btn-undo-1" data-i18n-title="undo1Title" title="Cancel last turn" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-semibold text-amber-300 flex items-center justify-center gap-1 transition" disabled="">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
-            Undo Turn
+            <span data-i18n="undoTurnBtn">Undo Turn</span>
           </button>
-          <button id="btn-redo-1" title="Redo undone turn" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-medium text-slate-200 flex items-center justify-center gap-1 transition" disabled="">
-            Redo
+          <button id="btn-redo-1" data-i18n-title="redo1Title" title="Redo undone turn" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-medium text-slate-200 flex items-center justify-center gap-1 transition" disabled="">
+            <span data-i18n="redoBtn">Redo</span>
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
@@ -1867,7 +1884,7 @@
         </div>
 
         <div class="text-[11px] text-slate-400 py-2 flex items-center justify-between">
-          <span>Click any move below to rewind to it:</span>
+          <span data-i18n="rewindHint">Click any move below to rewind to it:</span>
         </div>
 
         <!-- Scrollable Move History Table -->
@@ -1875,10 +1892,10 @@
 
         <!-- Draw / Resign Footer Actions -->
         <div class="pt-3 border-t border-slate-800 grid grid-cols-2 gap-2">
-          <button id="btn-offer-draw" class="py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-300 transition">
+          <button id="btn-offer-draw" data-i18n="declareDraw" class="py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-300 transition">
             Declare Draw
           </button>
-          <button id="btn-resign" class="py-1.5 px-3 rounded-lg bg-red-950/50 hover:bg-red-900/60 border border-red-800/50 text-xs font-medium text-red-300 transition">
+          <button id="btn-resign" data-i18n="resignTurn" class="py-1.5 px-3 rounded-lg bg-red-950/50 hover:bg-red-900/60 border border-red-800/50 text-xs font-medium text-red-300 transition">
             Resign Turn
           </button>
         </div>
@@ -1887,11 +1904,19 @@
 
   </main>
 
+  <!-- Bottom-Right Language Switcher ("РУС" / "ENG") -->
+  <div class="fixed bottom-4 right-4 z-40">
+    <button id="btn-lang-toggle" type="button" title="Switch Language / Сменить язык" class="flex items-center p-1 rounded-xl bg-slate-900/95 border border-slate-700 shadow-xl backdrop-blur-md text-xs font-bold tracking-wider transition">
+      <span id="lang-pos-ru" data-lang="ru" class="lang-pill-inactive px-2.5 py-1 rounded-lg transition">РУС</span>
+      <span id="lang-pos-en" data-lang="en" class="lang-pill-active px-2.5 py-1 rounded-lg transition">ENG</span>
+    </button>
+  </div>
+
   <!-- PAWN PROMOTION MODAL -->
   <div id="promotion-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 max-w-sm w-full shadow-2xl space-y-4">
-      <h3 class="text-base font-bold text-white text-center">Promote Pawn</h3>
-      <p class="text-xs text-slate-400 text-center">Choose a figure to promote your pawn into:</p>
+      <h3 data-i18n="promotePawnTitle" class="text-base font-bold text-white text-center">Promote Pawn</h3>
+      <p data-i18n="promotePawnDesc" class="text-xs text-slate-400 text-center">Choose a figure to promote your pawn into:</p>
       <div id="promotion-choices" class="grid grid-cols-4 gap-2.5">
         <!-- Populated dynamically with active skin -->
       </div>
@@ -1903,8 +1928,8 @@
     <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="px-5 py-4 border-b border-slate-800 flex items-center justify-between">
         <div>
-          <h3 class="text-base font-bold text-white">Custom Figure Skin Pack</h3>
-          <p class="text-xs text-slate-400">Import a 3x2 sprite sheet OR upload/paste individual SVG/PNG icons per piece.</p>
+          <h3 data-i18n="customSkinModalTitle" class="text-base font-bold text-white">Custom Figure Skin Pack</h3>
+          <p data-i18n="customSkinModalDesc" class="text-xs text-slate-400">Import a 3x2 sprite sheet OR upload/paste individual SVG/PNG icons per piece.</p>
         </div>
         <button id="btn-close-skin-modal" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1915,29 +1940,29 @@
 
       <div class="p-5 overflow-y-auto space-y-4 flex-1">
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Skin Pack Name</label>
-          <input type="text" id="custom-skin-name" placeholder="e.g., My Custom Pack" value="Custom Pack 1" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+          <label data-i18n="skinPackNameLabel" class="block text-xs font-semibold text-slate-300 mb-1">Skin Pack Name</label>
+          <input type="text" id="custom-skin-name" data-i18n-placeholder="skinPackNamePlaceholder" placeholder="e.g., My Custom Pack" value="Custom Pack 1" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
         </div>
 
         <!-- 3x2 Sprite Sheet Auto-Slicer -->
         <div class="bg-purple-950/30 border border-purple-700/50 rounded-xl p-3.5 space-y-2.5">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h4 class="text-xs font-bold text-purple-200">Quick 3x2 Sprite Sheet Auto-Slicer</h4>
-              <p class="text-[11px] text-slate-400">Grid order: Top [Pawn, Rook, Knight], Bottom [Bishop, Queen, King]. Automatically removes white card backgrounds and applies Figure Colors!</p>
+              <h4 data-i18n="autoSlicerTitle" class="text-xs font-bold text-purple-200">Quick 3x2 Sprite Sheet Auto-Slicer</h4>
+              <p data-i18n="autoSlicerDesc" class="text-[11px] text-slate-400">Grid order: Top [Pawn, Rook, Knight], Bottom [Bishop, Queen, King]. Automatically removes white card backgrounds and applies Figure Colors!</p>
             </div>
             <label class="cursor-pointer px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-xs font-semibold text-white shadow transition shrink-0">
-              Upload 3x2 Sheet
+              <span data-i18n="upload3x2Sheet">Upload 3x2 Sheet</span>
               <input type="file" id="sprite-sheet-upload" accept="image/*" class="hidden">
             </label>
           </div>
           <label class="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer">
             <input type="checkbox" id="sprite-remove-bg" checked="" class="accent-purple-500 rounded">
-            Remove white/light card background &amp; enable dynamic White/Black Figure Color tinting
+            <span data-i18n="removeBgLabel">Remove white/light card background &amp; enable dynamic White/Black Figure Color tinting</span>
           </label>
         </div>
 
-        <div class="text-xs text-slate-400 bg-slate-800/60 p-3 rounded-xl border border-slate-700/70">
+        <div data-i18n-html="customSkinFallbackHint" class="text-xs text-slate-400 bg-slate-800/60 p-3 rounded-xl border border-slate-700/70">
           Leave any slot blank to fall back to the built-in <strong class="text-slate-200">Classic Minimal</strong> icon. Changes apply immediately even mid-game!
         </div>
 
@@ -1947,14 +1972,14 @@
       </div>
 
       <div class="px-5 py-3.5 border-t border-slate-800 bg-slate-900/90 flex items-center justify-between gap-3">
-        <button id="btn-clear-custom-slots" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition">
+        <button id="btn-clear-custom-slots" data-i18n="clearAllSlots" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition">
           Clear All Slots
         </button>
         <div class="flex items-center gap-2">
-          <button id="btn-cancel-skin-modal" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition">
+          <button id="btn-cancel-skin-modal" data-i18n="cancel" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition">
             Cancel
           </button>
-          <button id="btn-save-skin-pack" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white shadow transition">
+          <button id="btn-save-skin-pack" data-i18n="saveApplySkinPack" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white shadow transition">
             Save &amp; Apply Skin Pack
           </button>
         </div>
@@ -1971,9 +1996,9 @@
             <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            Export Antigravity Project (.zip) &amp; Full Specification Prompt
+            <span data-i18n="exportModalTitle">Export Antigravity Project (.zip) &amp; Full Specification Prompt</span>
           </h3>
-          <p class="text-xs text-slate-400">Download the ready-to-import ZIP archive for Antigravity or copy the complete specification prompt.</p>
+          <p data-i18n="exportModalDesc" class="text-xs text-slate-400">Download the ready-to-import ZIP archive for Antigravity or copy the complete specification prompt.</p>
         </div>
         <button id="btn-close-export-modal" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1986,33 +2011,33 @@
         <!-- ZIP Contents Summary -->
         <div class="bg-emerald-950/30 border border-emerald-700/40 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="space-y-1">
-            <div class="text-xs font-bold text-emerald-300 uppercase tracking-wider">Included in antigravity-2d-chess-project.zip</div>
+            <div data-i18n="includedInZip" class="text-xs font-bold text-emerald-300 uppercase tracking-wider">Included in antigravity-2d-chess-project.zip</div>
             <ul class="text-xs text-slate-300 space-y-0.5 list-disc list-inside">
-              <li><code class="mono text-emerald-300">index.html</code> — Complete standalone 2D Top-Down PvP Chess application</li>
-              <li><code class="mono text-emerald-300">ANTIGRAVITY_PROMPT.md</code> — Full master prompt &amp; technical architecture specification</li>
-              <li><code class="mono text-emerald-300">README.md</code> — Project structure, controls, and customization guide</li>
-              <li><code class="mono text-emerald-300">assets/guinea-pig-2/*.svg</code> — Individual White &amp; Black Guinea Pig2 vector figure files</li>
+              <li data-i18n-html="zipItem1"><code class="mono text-emerald-300">index.html</code> — Complete standalone 2D Top-Down PvP Chess application</li>
+              <li data-i18n-html="zipItem2"><code class="mono text-emerald-300">ANTIGRAVITY_PROMPT.md</code> — Full master prompt &amp; technical architecture specification</li>
+              <li data-i18n-html="zipItem3"><code class="mono text-emerald-300">README.md</code> — Project structure, controls, and customization guide</li>
+              <li data-i18n-html="zipItem4"><code class="mono text-emerald-300">assets/guinea-pig-2/*.svg</code> — Individual White &amp; Black Guinea Pig2 vector figure files</li>
             </ul>
           </div>
           <button id="btn-download-zip" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg flex items-center justify-center gap-2 shrink-0 transition">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            <span>Download .ZIP</span>
+            <span data-i18n="downloadZip">Download .ZIP</span>
           </button>
         </div>
 
         <!-- Full Text Prompt Box -->
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <label for="antigravity-prompt-textarea" class="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <label for="antigravity-prompt-textarea" data-i18n="fullPromptLabel" class="text-xs font-bold uppercase tracking-wider text-slate-400">
               Full Text Prompt &amp; Description for Antigravity
             </label>
             <button id="btn-copy-prompt" class="px-3 py-1 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-xs font-semibold text-blue-300 flex items-center gap-1.5 transition">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
-              <span id="copy-prompt-label">Copy Full Prompt</span>
+              <span id="copy-prompt-label" data-i18n="copyFullPrompt">Copy Full Prompt</span>
             </button>
           </div>
           <textarea id="antigravity-prompt-textarea" readonly="" rows="14" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-xs mono text-slate-200 leading-relaxed focus:outline-none focus:border-blue-500 select-all"></textarea>
@@ -2020,7 +2045,7 @@
       </div>
 
       <div class="px-5 py-3.5 border-t border-slate-800 bg-slate-900/90 flex items-center justify-end gap-2">
-        <button id="btn-close-export-footer" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition">
+        <button id="btn-close-export-footer" data-i18n="close" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition">
           Close
         </button>
       </div>
@@ -2033,7 +2058,7 @@
       <h3 id="message-modal-title" class="text-base font-bold text-white">Notice</h3>
       <p id="message-modal-body" class="text-sm text-slate-300"></p>
       <div id="message-modal-actions" class="flex items-center justify-center gap-2 pt-1">
-        <button id="message-modal-ok" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white transition">OK</button>
+        <button id="message-modal-ok" data-i18n="ok" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white transition">OK</button>
       </div>
     </div>
   </div>
@@ -2050,6 +2075,330 @@
       bP: 'Black Pawn', bR: 'Black Rook', bN: 'Black Knight',
       bB: 'Black Bishop', bQ: 'Black Queen', bK: 'Black King'
     };
+
+    const I18N = {
+      en: {
+        docTitle: '2D Top-Down PvP Chess',
+        topbarToggleTitle: 'Show / Hide Top Bar (Click Bishop)',
+        appTitle: '2D Top-Down Chess',
+        appSubtitle: 'Local Pass & Play • Customizable Board & Skins',
+        exportBtnTitle: 'Export Project ZIP & Full Antigravity Prompt',
+        exportBtnLabel: 'Export Antigravity ZIP & Prompt',
+        themeLight: 'Light Theme',
+        themeDark: 'Dark Theme',
+        themeSwitchToLightTitle: 'Switch to Light Background Theme',
+        themeSwitchToDarkTitle: 'Switch to Dark Background Theme',
+        tacticalOverlays: 'Tactical Overlays',
+        validMovesTitle: 'Active Piece Moves',
+        validMovesDesc: 'Blue dots on valid target cells',
+        dangerousTurnsTitle: 'Show dangerous turns',
+        dangerousTurnsDesc: 'Blue dot = safe, red dot = dangerous',
+        enemyAttacksTitle: 'Enemy Attack Zones',
+        enemyAttacksDesc: '65% transparent red on threatened cells',
+        boardCoordsTitle: 'Board Coordinates',
+        boardCoordsDesc: 'Show ranks (1-8) & files (a-h)',
+        fieldColors: 'Field Colors',
+        reset: 'Reset',
+        whiteCells: '"White" Cells',
+        blackCells: '"Black" Cells',
+        quickPresets: 'Quick Presets',
+        presetSlate: 'Slate Minimal',
+        presetGreen: 'Tournament Green',
+        presetWood: 'Classic Wood',
+        presetArctic: 'Arctic Ice',
+        figureColors: 'Figure Colors',
+        whiteFigures: '"White" Figures',
+        blackFigures: '"Black" Figures',
+        figureColorPresets: 'Figure Color Presets',
+        fpresetIvoryGray: 'Classic Ivory & Gray',
+        fpresetPinkViolet: 'Pastel Pink & Royal Violet',
+        fpresetGoldCrimson: 'Imperial Gold & Crimson',
+        fpresetCyanEmerald: 'Sky Cyan & Emerald',
+        figureSkinPacks: 'Figure Skin Packs',
+        swap: 'Swap',
+        swapSkinsTitle: 'Swap White and Black Figure Packs',
+        whiteFiguresPack: '"White" Figures Pack',
+        blackFiguresPack: '"Black" Figures Pack',
+        addEditCustomSkin: 'Add / Edit Custom Skin Pack',
+        skinName_hedgehogs: 'Hedgehogs (Attached Pack)',
+        skinName_mice: 'Mice (Attached Pack)',
+        skinName_cats: 'Cats (Attached Pack)',
+        skinName_dogs: 'Dogs (Attached Pack)',
+        'skinName_guinea-pigs-alt': 'Alternative Guinea Pig (Attached Pack)',
+        'skinName_guinea-pigs-2': 'Guinea Pig2 (Attached Pack)',
+        'skinName_minimal-geometric': 'Classic Minimal',
+        'skinName_topdown-tokens': 'Geometric Tokens',
+        'skinName_nordic-symbols': 'Modern Line',
+        handicapSetup: 'Handicap Setup',
+        editing: 'Editing',
+        handicapDesc: 'Remove any non-King pieces from one or both sides to play with odds/handicap.',
+        handicapEnterBtn: 'Enter Handicap Edit Mode',
+        handicapApplyBtn: 'Apply Handicap & Start Game',
+        removedPiecesLabel: 'Removed pieces:',
+        restoreAll: 'Restore All',
+        startingTurnLabel: 'Starting Turn:',
+        white: 'White',
+        black: 'Black',
+        capturedByPlayerTitle: 'Figures captured by this player (50% size, 50% opacity)',
+        lostByWhite: 'Lost by White',
+        lostByBlack: 'Lost by Black',
+        none: 'None',
+        flipBoardTitle: 'Flip Board Orientation',
+        flip: 'Flip',
+        newGame: 'New Game',
+        turnsLog: 'Turns Log',
+        undoAllTitle: 'Cancel all turns (Back to start)',
+        startBtn: 'Start',
+        undo1Title: 'Cancel last turn',
+        undoTurnBtn: 'Undo Turn',
+        redo1Title: 'Redo undone turn',
+        redoBtn: 'Redo',
+        rewindHint: 'Click any move below to rewind to it:',
+        noTurnsYet: 'No turns played yet.',
+        declareDraw: 'Declare Draw',
+        resignTurn: 'Resign Turn',
+        promotePawnTitle: 'Promote Pawn',
+        promotePawnDesc: 'Choose a figure to promote your pawn into:',
+        customSkinModalTitle: 'Custom Figure Skin Pack',
+        customSkinModalDesc: 'Import a 3x2 sprite sheet OR upload/paste individual SVG/PNG icons per piece.',
+        skinPackNameLabel: 'Skin Pack Name',
+        skinPackNamePlaceholder: 'e.g., My Custom Pack',
+        customPackDefaultPrefix: 'Custom Pack',
+        autoSlicerTitle: 'Quick 3x2 Sprite Sheet Auto-Slicer',
+        autoSlicerDesc: 'Grid order: Top [Pawn, Rook, Knight], Bottom [Bishop, Queen, King]. Automatically removes white card backgrounds and applies Figure Colors!',
+        upload3x2Sheet: 'Upload 3x2 Sheet',
+        removeBgLabel: 'Remove white/light card background & enable dynamic White/Black Figure Color tinting',
+        customSkinFallbackHint: 'Leave any slot blank to fall back to the built-in <strong class="text-slate-200">Classic Minimal</strong> icon. Changes apply immediately even mid-game!',
+        uploadFile: 'Upload File',
+        pieceSlotPlaceholder: 'Paste image URL or <svg>...</svg>',
+        uploadedImageToken: '[Uploaded Image]',
+        clearAllSlots: 'Clear All Slots',
+        cancel: 'Cancel',
+        saveApplySkinPack: 'Save & Apply Skin Pack',
+        exportModalTitle: 'Export Antigravity Project (.zip) & Full Specification Prompt',
+        exportModalDesc: 'Download the ready-to-import ZIP archive for Antigravity or copy the complete specification prompt.',
+        includedInZip: 'Included in antigravity-2d-chess-project.zip',
+        zipItem1: '<code class="mono text-emerald-300">index.html</code> — Complete standalone 2D Top-Down PvP Chess application',
+        zipItem2: '<code class="mono text-emerald-300">ANTIGRAVITY_PROMPT.md</code> — Full master prompt &amp; technical architecture specification',
+        zipItem3: '<code class="mono text-emerald-300">README.md</code> — Project structure, controls, and customization guide',
+        zipItem4: '<code class="mono text-emerald-300">assets/guinea-pig-2/*.svg</code> — Individual White &amp; Black Guinea Pig2 vector figure files',
+        downloadZip: 'Download .ZIP',
+        packagingZip: 'Packaging .ZIP...',
+        fullPromptLabel: 'Full Text Prompt & Description for Antigravity',
+        copyFullPrompt: 'Copy Full Prompt',
+        copiedClipboard: 'Copied to Clipboard!',
+        close: 'Close',
+        ok: 'OK',
+        confirm: 'Confirm',
+        notice: 'Notice',
+        statusHandicap: 'Handicap Setup: Click pieces to remove',
+        turnWhite: "White's Turn",
+        turnBlack: "Black's Turn",
+        checkSuffix: ' (CHECK!)',
+        checkmateWinWhite: 'Checkmate! White wins',
+        checkmateWinBlack: 'Checkmate! Black wins',
+        stalemateDraw: 'Draw by Stalemate',
+        fiftyMoveDraw: 'Draw by 50-Move Rule',
+        insufficientDraw: 'Draw by Insufficient Material',
+        mutualDraw: 'Draw by Mutual Agreement',
+        resignWinWhite: 'White Resigned — Black Wins!',
+        resignWinBlack: 'Black Resigned — White Wins!',
+        kingProtectedTitle: 'King Protected',
+        kingProtectedBody: 'Kings cannot be removed in Handicap mode.',
+        newGameConfirmTitle: 'Start New Game?',
+        newGameConfirmBody: 'Reset the board to a fresh standard chess match?',
+        drawConfirmTitle: 'Declare Draw?',
+        drawConfirmBody: 'Both players agree to end the game in a draw?',
+        resignConfirmWhiteTitle: 'White Resigns?',
+        resignConfirmWhiteBody: 'White will forfeit the match and Black will win.',
+        resignConfirmBlackTitle: 'Black Resigns?',
+        resignConfirmBlackBody: 'Black will forfeit the match and White will win.',
+        copyPromptFallbackTitle: 'Copy Prompt',
+        copyPromptFallbackBody: 'Please press Ctrl+C / Cmd+C to copy the selected prompt text.',
+        exportErrorTitle: 'Export Error',
+        exportErrorBodyPrefix: 'Could not generate ZIP file: ',
+        libJszipMissing: 'JSZip library failed to load.',
+        piece_wP: 'White Pawn', piece_wR: 'White Rook', piece_wN: 'White Knight',
+        piece_wB: 'White Bishop', piece_wQ: 'White Queen', piece_wK: 'White King',
+        piece_bP: 'Black Pawn', piece_bR: 'Black Rook', piece_bN: 'Black Knight',
+        piece_bB: 'Black Bishop', piece_bQ: 'Black Queen', piece_bK: 'Black King'
+      },
+      ru: {
+        docTitle: '2D Шахматы (вид сверху)',
+        topbarToggleTitle: 'Показать / скрыть верхнюю панель (нажмите на Слона)',
+        appTitle: '2D Шахматы',
+        appSubtitle: 'Локальная игра на одном ПК • Настройка доски и фигур',
+        exportBtnTitle: 'Экспортировать ZIP проекта и полный промпт Antigravity',
+        exportBtnLabel: 'Экспорт ZIP и промпта',
+        themeLight: 'Светлая тема',
+        themeDark: 'Тёмная тема',
+        themeSwitchToLightTitle: 'Переключить на светлую тему фона',
+        themeSwitchToDarkTitle: 'Переключить на тёмную тему фона',
+        tacticalOverlays: 'Тактические подсказки',
+        validMovesTitle: 'Ходы выбранной фигуры',
+        validMovesDesc: 'Синие точки на доступных полях',
+        dangerousTurnsTitle: 'Показывать опасные ходы',
+        dangerousTurnsDesc: 'Синяя точка = безопасно, красная = опасно',
+        enemyAttacksTitle: 'Зоны атаки противника',
+        enemyAttacksDesc: 'Полупрозрачный красный слой на полях под боем',
+        boardCoordsTitle: 'Координаты доски',
+        boardCoordsDesc: 'Показывать горизонтали (1–8) и вертикали (a–h)',
+        fieldColors: 'Цвета полей',
+        reset: 'Сброс',
+        whiteCells: '«Белые» поля',
+        blackCells: '«Чёрные» поля',
+        quickPresets: 'Готовые темы',
+        presetSlate: 'Минимал (Сланец)',
+        presetGreen: 'Турнирный зелёный',
+        presetWood: 'Классическое дерево',
+        presetArctic: 'Арктический лёд',
+        figureColors: 'Цвета фигур',
+        whiteFigures: '«Белые» фигуры',
+        blackFigures: '«Чёрные» фигуры',
+        figureColorPresets: 'Пресеты цветов фигур',
+        fpresetIvoryGray: 'Классика: слоновая кость и серый',
+        fpresetPinkViolet: 'Пастельный розовый и фиолетовый',
+        fpresetGoldCrimson: 'Имперское золото и багряный',
+        fpresetCyanEmerald: 'Небесно-голубой и изумрудный',
+        figureSkinPacks: 'Наборы фигур',
+        swap: 'Поменять',
+        swapSkinsTitle: 'Поменять наборы белых и чёрных фигур местами',
+        whiteFiguresPack: 'Набор «белых» фигур',
+        blackFiguresPack: 'Набор «чёрных» фигур',
+        addEditCustomSkin: 'Добавить / изменить свой набор',
+        skinName_hedgehogs: 'Ёжики (набор)',
+        skinName_mice: 'Мышки (набор)',
+        skinName_cats: 'Котики (набор)',
+        skinName_dogs: 'Собачки (набор)',
+        'skinName_guinea-pigs-alt': 'Альтернативные морские свинки (набор)',
+        'skinName_guinea-pigs-2': 'Морские свинки 2 (набор)',
+        'skinName_minimal-geometric': 'Классический минимализм',
+        'skinName_topdown-tokens': 'Геометрические жетоны',
+        'skinName_nordic-symbols': 'Современные линии',
+        handicapSetup: 'Режим форы',
+        editing: 'Настройка',
+        handicapDesc: 'Убирайте любые фигуры (кроме королей) с одной или обеих сторон для игры с форой.',
+        handicapEnterBtn: 'Настроить фору',
+        handicapApplyBtn: 'Применить фору и начать игру',
+        removedPiecesLabel: 'Убрано фигур:',
+        restoreAll: 'Восстановить все',
+        startingTurnLabel: 'Первый ход:',
+        white: 'Белые',
+        black: 'Чёрные',
+        capturedByPlayerTitle: 'Фигуры, взятые этим игроком (размер 50%, прозрачность 50%)',
+        lostByWhite: 'Потери белых',
+        lostByBlack: 'Потери чёрных',
+        none: 'Нет',
+        flipBoardTitle: 'Перевернуть доску',
+        flip: 'Перевернуть',
+        newGame: 'Новая игра',
+        turnsLog: 'Журнал ходов',
+        undoAllTitle: 'Отменить все ходы (в начало)',
+        startBtn: 'В начало',
+        undo1Title: 'Отменить последний ход',
+        undoTurnBtn: 'Назад',
+        redo1Title: 'Вернуть отменённый ход',
+        redoBtn: 'Вперёд',
+        rewindHint: 'Нажмите на любой ход ниже для перехода:',
+        noTurnsYet: 'Ходов пока не было.',
+        declareDraw: 'Ничья',
+        resignTurn: 'Сдаться',
+        promotePawnTitle: 'Превращение пешки',
+        promotePawnDesc: 'Выберите фигуру для превращения пешки:',
+        customSkinModalTitle: 'Свой набор фигур',
+        customSkinModalDesc: 'Загрузите лист спрайтов 3x2 ИЛИ загрузите/вставьте SVG/PNG для каждой фигуры.',
+        skinPackNameLabel: 'Название набора',
+        skinPackNamePlaceholder: 'Например, Мой набор',
+        customPackDefaultPrefix: 'Свой набор',
+        autoSlicerTitle: 'Быстрая авто-нарезка листа спрайтов 3x2',
+        autoSlicerDesc: 'Порядок в сетке: сверху [Пешка, Ладья, Конь], снизу [Слон, Ферзь, Король]. Автоматически удаляет белый фон и применяет цвета фигур!',
+        upload3x2Sheet: 'Загрузить лист 3x2',
+        removeBgLabel: 'Удалить светлый фон карточки и включить перекраску в цвета белых и чёрных фигур',
+        customSkinFallbackHint: 'Оставьте любое поле пустым, чтобы использовать иконку по умолчанию. Изменения применяются сразу, даже во время партии!',
+        uploadFile: 'Загрузить',
+        pieceSlotPlaceholder: 'Вставьте URL или <svg>...</svg>',
+        uploadedImageToken: '[Загружено]',
+        clearAllSlots: 'Очистить все',
+        cancel: 'Отмена',
+        saveApplySkinPack: 'Сохранить и применить',
+        exportModalTitle: 'Экспорт проекта Antigravity (.zip) и полного промпта',
+        exportModalDesc: 'Скачайте готовый ZIP-архив для Antigravity или скопируйте полную спецификацию.',
+        includedInZip: 'Содержимое архива antigravity-2d-chess-project.zip',
+        zipItem1: '<code class="mono text-emerald-300">index.html</code> — Полное автономное приложение 2D-шахмат',
+        zipItem2: '<code class="mono text-emerald-300">ANTIGRAVITY_PROMPT.md</code> — Полный мастер-промпт и архитектура проекта',
+        zipItem3: '<code class="mono text-emerald-300">README.md</code> — Структура проекта, управление и настройка',
+        zipItem4: '<code class="mono text-emerald-300">assets/guinea-pig-2/*.svg</code> — Отдельные SVG-файлы фигур «Морские свинки 2»',
+        downloadZip: 'Скачать .ZIP',
+        packagingZip: 'Упаковка .ZIP...',
+        fullPromptLabel: 'Полный текстовый промпт и описание для Antigravity',
+        copyFullPrompt: 'Копировать промпт',
+        copiedClipboard: 'Скопировано!',
+        close: 'Закрыть',
+        ok: 'ОК',
+        confirm: 'Подтвердить',
+        notice: 'Уведомление',
+        statusHandicap: 'Настройка форы: нажимайте на фигуры',
+        turnWhite: 'Ход белых',
+        turnBlack: 'Ход чёрных',
+        checkSuffix: ' (ШАХ!)',
+        checkmateWinWhite: 'Мат! Победили белые',
+        checkmateWinBlack: 'Мат! Победили чёрные',
+        stalemateDraw: 'Ничья: пат',
+        fiftyMoveDraw: 'Ничья: правило 50 ходов',
+        insufficientDraw: 'Ничья: недостаточно фигур',
+        mutualDraw: 'Ничья по обоюдному согласию',
+        resignWinWhite: 'Белые сдались — победили чёрные!',
+        resignWinBlack: 'Чёрные сдались — победили белые!',
+        kingProtectedTitle: 'Король защищён',
+        kingProtectedBody: 'Королей нельзя убирать в режиме форы.',
+        newGameConfirmTitle: 'Начать новую партию?',
+        newGameConfirmBody: 'Сбросить доску к стандартной начальной расстановке?',
+        drawConfirmTitle: 'Объявить ничью?',
+        drawConfirmBody: 'Оба игрока согласны завершить партию вничью?',
+        resignConfirmWhiteTitle: 'Белые сдаются?',
+        resignConfirmWhiteBody: 'Белые признают поражение, и побеждают чёрные.',
+        resignConfirmBlackTitle: 'Чёрные сдаются?',
+        resignConfirmBlackBody: 'Чёрные признают поражение, и побеждают белые.',
+        copyPromptFallbackTitle: 'Копировать промпт',
+        copyPromptFallbackBody: 'Нажмите Ctrl+C / Cmd+C, чтобы скопировать выделенный текст промпта.',
+        exportErrorTitle: 'Ошибка экспорта',
+        exportErrorBodyPrefix: 'Не удалось создать ZIP-архив: ',
+        libJszipMissing: 'Не удалось загрузить библиотеку JSZip.',
+        piece_wP: 'Белая пешка', piece_wR: 'Белая ладья', piece_wN: 'Белый конь',
+        piece_wB: 'Белый слон', piece_wQ: 'Белый ферзь', piece_wK: 'Белый король',
+        piece_bP: 'Чёрная пешка', piece_bR: 'Чёрная ладья', piece_bN: 'Чёрный конь',
+        piece_bB: 'Чёрный слон', piece_bQ: 'Чёрный ферзь', piece_bK: 'Чёрный король'
+      }
+    };
+
+    let currentLang = 'en';
+    try {
+      const savedLang = localStorage.getItem('easychess_lang_v1');
+      if (savedLang === 'ru' || savedLang === 'en') currentLang = savedLang;
+    } catch (e) { /* ignore storage restrictions */ }
+
+    function t(key) {
+      const dict = I18N[currentLang] || I18N.en;
+      return Object.prototype.hasOwnProperty.call(dict, key) ? dict[key] : (I18N.en[key] || key);
+    }
+
+    function getPieceLabel(pieceCode) {
+      return t('piece_' + pieceCode) || PIECE_LABELS[pieceCode] || pieceCode;
+    }
+
+    function formatMoveCount(count) {
+      if (currentLang === 'ru') {
+        const mod10 = count % 10;
+        const mod100 = count % 100;
+        const word = (mod10 === 1 && mod100 !== 11)
+          ? 'ход'
+          : (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20))
+            ? 'хода'
+            : 'ходов';
+        return `${count} ${word}`;
+      }
+      return `${count} ${count === 1 ? 'move' : 'moves'}`;
+    }
 
     const PIECE_VALUES = { P: 1, N: 3, B: 3, R: 5, Q: 9, K: 0 };
 
@@ -2732,7 +3081,7 @@
           if (tiles && tiles[type]) {
             const tintedUrl = getTintedSpriteDataUrl(`${id}_${type}`, tiles[type], targetHex);
             const sizeStyle = type === 'P' ? ' style="width: 75%; height: 75%;"' : '';
-            return `<img src="${tintedUrl}" alt="${PIECE_LABELS[pieceCode]}"${sizeStyle} />`;
+            return `<img src="${tintedUrl}" alt="${getPieceLabel(pieceCode)}"${sizeStyle} />`;
           }
           return fallbackRenderer(pieceCode);
         }
@@ -2844,6 +3193,7 @@
         this.status = 'playing'; // 'playing' | 'checkmate' | 'stalemate' | 'draw' | 'resigned'
         this.winner = null; // 'w' | 'b' | null
         this.statusReason = '';
+        this.statusReasonKey = '';
       }
 
       cloneState() {
@@ -2859,7 +3209,8 @@
           lastMove: this.lastMove ? { from: { ...this.lastMove.from }, to: { ...this.lastMove.to } } : null,
           status: this.status,
           winner: this.winner,
-          statusReason: this.statusReason
+          statusReason: this.statusReason,
+          statusReasonKey: this.statusReasonKey
         };
       }
 
@@ -2876,6 +3227,7 @@
         this.status = state.status;
         this.winner = state.winner;
         this.statusReason = state.statusReason;
+        this.statusReasonKey = state.statusReasonKey || '';
       }
 
       inBounds(r, c) {
@@ -3281,25 +3633,30 @@
         const opponentMoves = this.getAllLegalMoves(this.turn);
 
         let suffix = '';
+        this.statusReasonKey = '';
         if (opponentMoves.length === 0) {
           if (inCheck) {
             this.status = 'checkmate';
             this.winner = color;
             this.statusReason = `Checkmate! ${color === 'w' ? 'White' : 'Black'} wins`;
+            this.statusReasonKey = color === 'w' ? 'checkmateWinWhite' : 'checkmateWinBlack';
             suffix = '#';
           } else {
             this.status = 'stalemate';
             this.winner = null;
             this.statusReason = 'Draw by Stalemate';
+            this.statusReasonKey = 'stalemateDraw';
           }
         } else {
           if (inCheck) suffix = '+';
           if (this.halfMoveClock >= 100) {
             this.status = 'draw';
             this.statusReason = 'Draw by 50-Move Rule';
+            this.statusReasonKey = 'fiftyMoveDraw';
           } else if (this.isInsufficientMaterial()) {
             this.status = 'draw';
             this.statusReason = 'Draw by Insufficient Material';
+            this.statusReasonKey = 'insufficientDraw';
           }
         }
 
@@ -3463,11 +3820,11 @@
         // Dynamically recolor uploaded 3x2 sprite-sheet pieces
         const cacheId = `${activeSkin.id}_${pieceCode}`;
         const cached = getTintedSpriteDataUrlFromDataUrl(cacheId, trimmed, targetHex);
-        return `<img src="${cached}" alt="${PIECE_LABELS[pieceCode]}"${sizeStyle} />`;
+        return `<img src="${cached}" alt="${getPieceLabel(pieceCode)}"${sizeStyle} />`;
       } else {
         // Standard Image URL or Data URL
         const fallbackSvg = encodeURIComponent(fallbackSkin.render(pieceCode));
-        return `<img src="${trimmed.replace(/"/g, '&quot;')}" alt="${PIECE_LABELS[pieceCode]}"${sizeStyle} onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,${fallbackSvg}';" />`;
+        return `<img src="${trimmed.replace(/"/g, '&quot;')}" alt="${getPieceLabel(pieceCode)}"${sizeStyle} onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,${fallbackSvg}';" />`;
       }
     }
 
@@ -3513,12 +3870,12 @@
       if (confirmCallback) {
         const cancelBtn = document.createElement('button');
         cancelBtn.className = 'px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition';
-        cancelBtn.textContent = 'Cancel';
+        cancelBtn.textContent = t('cancel');
         cancelBtn.onclick = () => modal.classList.add('hidden');
 
         const confirmBtn = document.createElement('button');
         confirmBtn.className = 'px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white transition';
-        confirmBtn.textContent = 'Confirm';
+        confirmBtn.textContent = t('confirm');
         confirmBtn.onclick = () => {
           modal.classList.add('hidden');
           confirmCallback();
@@ -3529,7 +3886,7 @@
       } else {
         const okBtn = document.createElement('button');
         okBtn.className = 'px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white transition';
-        okBtn.textContent = 'OK';
+        okBtn.textContent = t('ok');
         okBtn.onclick = () => modal.classList.add('hidden');
         actions.appendChild(okBtn);
       }
@@ -3671,7 +4028,7 @@
 
     function renderStatus() {
       if (handicapMode) {
-        statusTextEl.textContent = 'Handicap Setup: Click pieces to remove';
+        statusTextEl.textContent = t('statusHandicap');
         turnDotEl.className = 'w-3 h-3 rounded-full bg-amber-400 ring-2 ring-amber-200 animate-pulse';
         return;
       }
@@ -3679,12 +4036,12 @@
       if (engine.status === 'playing') {
         const isWhite = engine.turn === 'w';
         const inCheck = engine.isInCheck(engine.turn);
-        statusTextEl.textContent = `${isWhite ? 'White' : 'Black'}'s Turn${inCheck ? ' (CHECK!)' : ''}`;
+        statusTextEl.textContent = `${t(isWhite ? 'turnWhite' : 'turnBlack')}${inCheck ? t('checkSuffix') : ''}`;
         turnDotEl.className = isWhite
           ? 'w-3 h-3 rounded-full bg-white ring-2 ring-slate-400'
           : 'w-3 h-3 rounded-full bg-slate-950 ring-2 ring-slate-400';
       } else {
-        statusTextEl.textContent = engine.statusReason;
+        statusTextEl.textContent = engine.statusReasonKey ? t(engine.statusReasonKey) : engine.statusReason;
         turnDotEl.className = 'w-3 h-3 rounded-full bg-emerald-400 ring-2 ring-emerald-200';
       }
     }
@@ -3714,12 +4071,12 @@
       bottomBarEl.classList.toggle('player-bar-active', isBottomTurn);
       bottomBarEl.classList.toggle('player-bar-inactive', !isBottomTurn);
 
-      document.getElementById('top-player-name').textContent = topIsBlack ? 'Black' : 'White';
+      document.getElementById('top-player-name').textContent = topIsBlack ? t('black') : t('white');
       const topBadge = document.getElementById('top-player-badge');
       topBadge.className = 'w-3 h-3 rounded-full border border-slate-400';
       topBadge.style.backgroundColor = topIsBlack ? blackPieceColor : whitePieceColor;
 
-      document.getElementById('bottom-player-name').textContent = topIsBlack ? 'White' : 'Black';
+      document.getElementById('bottom-player-name').textContent = topIsBlack ? t('white') : t('black');
       const bottomBadge = document.getElementById('bottom-player-badge');
       bottomBadge.className = 'w-3 h-3 rounded-full border border-slate-400';
       bottomBadge.style.backgroundColor = topIsBlack ? whitePieceColor : blackPieceColor;
@@ -3730,7 +4087,7 @@
       document.getElementById('bottom-material-adv').textContent = topIsBlack ? whiteAdvText : blackAdvText;
 
       const renderIcons = (list) => list.map(p =>
-        `<span class="captured-piece-icon" title="${PIECE_LABELS[p]}">${renderPieceMarkup(p)}</span>`
+        `<span class="captured-piece-icon" title="${getPieceLabel(p)}">${renderPieceMarkup(p)}</span>`
       ).join('');
 
       document.getElementById('top-captured-list').innerHTML = renderIcons(topIsBlack ? whiteLost : blackLost);
@@ -3742,19 +4099,19 @@
 
       lostByWhiteEl.innerHTML = whiteLost.length > 0
         ? renderIcons(whiteLost)
-        : '<span class="text-[11px] text-slate-600 italic">None</span>';
+        : `<span class="text-[11px] text-slate-600 italic">${t('none')}</span>`;
 
       lostByBlackEl.innerHTML = blackLost.length > 0
         ? renderIcons(blackLost)
-        : '<span class="text-[11px] text-slate-600 italic">None</span>';
+        : `<span class="text-[11px] text-slate-600 italic">${t('none')}</span>`;
     }
 
     function renderTurnLog() {
       const totalMoves = history.length - 1;
-      moveCountBadgeEl.textContent = `${totalMoves} ${totalMoves === 1 ? 'move' : 'moves'}`;
+      moveCountBadgeEl.textContent = formatMoveCount(totalMoves);
 
       if (totalMoves === 0) {
-        turnLogContainerEl.innerHTML = `<div class="text-slate-500 text-center py-8 italic font-sans">No turns played yet.</div>`;
+        turnLogContainerEl.innerHTML = `<div class="text-slate-500 text-center py-8 italic font-sans">${t('noTurnsYet')}</div>`;
         return;
       }
 
@@ -3832,7 +4189,7 @@
         const piece = engine.board[r][c];
         if (piece) {
           if (piece[1] === 'K') {
-            showMessageModal('King Protected', 'Kings cannot be removed in Handicap mode.');
+            showMessageModal(t('kingProtectedTitle'), t('kingProtectedBody'));
             return;
           }
           engine.board[r][c] = null;
@@ -3950,8 +4307,19 @@
       document.getElementById('handicap-removed-count').textContent = count;
     }
 
-    function toggleHandicapMode() {
+    function updateHandicapToggleButtonUI() {
       const btn = document.getElementById('btn-toggle-handicap');
+      if (!btn) return;
+      if (handicapMode) {
+        btn.textContent = t('handicapApplyBtn');
+        btn.className = 'w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white shadow transition';
+      } else {
+        btn.textContent = t('handicapEnterBtn');
+        btn.className = 'w-full py-2 px-3 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/40 text-xs font-semibold text-amber-300 transition';
+      }
+    }
+
+    function toggleHandicapMode() {
       const badge = document.getElementById('handicap-badge');
       const controls = document.getElementById('handicap-controls');
 
@@ -3963,8 +4331,7 @@
         handicapInitialBoard = engine.board.map(row => [...row]);
         document.getElementById('handicap-start-turn').value = engine.turn;
 
-        btn.textContent = 'Apply Handicap & Start Game';
-        btn.className = 'w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white shadow transition';
+        updateHandicapToggleButtonUI();
         badge.classList.remove('hidden');
         controls.classList.remove('hidden');
         updateHandicapCounter();
@@ -3979,6 +4346,7 @@
         engine.status = 'playing';
         engine.winner = null;
         engine.statusReason = '';
+        engine.statusReasonKey = '';
         engine.capturedByWhite = [];
         engine.capturedByBlack = [];
 
@@ -3988,16 +4356,17 @@
             engine.status = 'checkmate';
             engine.winner = engine.turn === 'w' ? 'b' : 'w';
             engine.statusReason = `Checkmate! ${engine.winner === 'w' ? 'White' : 'Black'} wins`;
+            engine.statusReasonKey = engine.winner === 'w' ? 'checkmateWinWhite' : 'checkmateWinBlack';
           } else {
             engine.status = 'stalemate';
             engine.statusReason = 'Draw by Stalemate';
+            engine.statusReasonKey = 'stalemateDraw';
           }
         }
 
         initHistory();
 
-        btn.textContent = 'Enter Handicap Edit Mode';
-        btn.className = 'w-full py-2 px-3 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/40 text-xs font-semibold text-amber-300 transition';
+        updateHandicapToggleButtonUI();
         badge.classList.add('hidden');
         controls.classList.add('hidden');
         renderAll();
@@ -4019,7 +4388,8 @@
         all.forEach(skin => {
           const opt = document.createElement('option');
           opt.value = skin.id;
-          opt.textContent = skin.name;
+          const locKey = 'skinName_' + skin.id;
+          opt.textContent = (I18N[currentLang] && I18N[currentLang][locKey]) ? t(locKey) : skin.name;
           if (skin.id === selectedId) opt.selected = true;
           el.appendChild(opt);
         });
@@ -4040,7 +4410,7 @@
       draftCustomTintable = existingCustom ? !!existingCustom.tintable : false;
       document.getElementById('custom-skin-name').value = existingCustom
         ? existingCustom.name
-        : `Custom Pack ${customSkins.length + 1}`;
+        : `${t('customPackDefaultPrefix')} ${customSkins.length + 1}`;
 
       const order = ['wK', 'bK', 'wQ', 'bQ', 'wR', 'bR', 'wB', 'bB', 'wN', 'bN', 'wP', 'bP'];
 
@@ -4071,11 +4441,11 @@
 
         const topRow = document.createElement('div');
         topRow.className = 'flex items-center justify-between';
-        topRow.innerHTML = `<span class="text-xs font-semibold text-slate-200">${PIECE_LABELS[code]}</span>`;
+        topRow.innerHTML = `<span class="text-xs font-semibold text-slate-200">${getPieceLabel(code)}</span>`;
 
         const fileLabel = document.createElement('label');
         fileLabel.className = 'cursor-pointer text-[11px] font-medium text-blue-400 hover:text-blue-300 bg-blue-950/50 px-2 py-0.5 rounded border border-blue-800/50';
-        fileLabel.textContent = 'Upload File';
+        fileLabel.textContent = t('uploadFile');
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = 'image/*,.svg';
@@ -4086,7 +4456,7 @@
           const reader = new FileReader();
           reader.onload = (ev) => {
             draftCustomPieces[code] = ev.target.result;
-            textInput.value = '[Uploaded Image]';
+            textInput.value = t('uploadedImageToken');
             renderPreview();
           };
           reader.readAsDataURL(file);
@@ -4096,16 +4466,16 @@
 
         const textInput = document.createElement('input');
         textInput.type = 'text';
-        textInput.placeholder = 'Paste image URL or <svg>...</svg>';
+        textInput.placeholder = t('pieceSlotPlaceholder');
         textInput.value = draftCustomPieces[code] && !draftCustomPieces[code].startsWith('data:')
           ? draftCustomPieces[code]
-          : (draftCustomPieces[code] ? '[Uploaded Image]' : '');
+          : (draftCustomPieces[code] ? t('uploadedImageToken') : '');
         textInput.className = 'w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1 text-[11px] text-slate-200 focus:outline-none focus:border-blue-500';
         textInput.oninput = (e) => {
           const v = e.target.value.trim();
           if (!v) {
             delete draftCustomPieces[code];
-          } else if (v !== '[Uploaded Image]') {
+          } else if (v !== I18N.en.uploadedImageToken && v !== I18N.ru.uploadedImageToken) {
             draftCustomPieces[code] = v;
           }
           renderPreview();
@@ -4151,7 +4521,7 @@
 
     function saveCustomSkinPack() {
       const nameInput = document.getElementById('custom-skin-name').value.trim();
-      const packName = nameInput || `Custom Pack ${customSkins.length + 1}`;
+      const packName = nameInput || `${t('customPackDefaultPrefix')} ${customSkins.length + 1}`;
 
       // Check if updating an existing custom skin with same name or creating new
       let targetSkin = customSkins.find(s => s.name.toLowerCase() === packName.toLowerCase());
@@ -4224,6 +4594,8 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
   - Top bar floats over the board and minimizes/restores on clicking the top-left **Bishop** icon, keeping only the Bishop icon visible when minimized.
   - A **King** icon button in the top bar (visible only when expanded) toggles between Dark and Light/Bright background themes.
   - Active player bars at the top and bottom of the board highlight only during that player's turn and remain transparent otherwise, while \`Flip\` and \`New Game\` controls live at the top of the **Turns Log** section.
+- **Language Selection ("РУС" / "ENG")**:
+  - Two-position \`РУС\` / \`ENG\` toggle button anchored in the bottom-right corner switches the entire interface and all game/modal messages between Russian and English live.
 
 ## 4. Customizable Field Colors & Figure Colors (Full Color Scale + Presets)
 - **Field Colors ("White" & "Black" Cells)**:
@@ -4297,12 +4669,12 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       try {
         document.execCommand('copy');
         const label = document.getElementById('copy-prompt-label');
-        label.textContent = 'Copied to Clipboard!';
+        label.textContent = t('copiedClipboard');
         setTimeout(() => {
-          label.textContent = 'Copy Full Prompt';
+          label.textContent = t('copyFullPrompt');
         }, 2000);
       } catch (e) {
-        showMessageModal('Copy Prompt', 'Please press Ctrl+C / Cmd+C to copy the selected prompt text.');
+        showMessageModal(t('copyPromptFallbackTitle'), t('copyPromptFallbackBody'));
       }
     }
 
@@ -4310,11 +4682,11 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       const btn = document.getElementById('btn-download-zip');
       const origHtml = btn.innerHTML;
       btn.disabled = true;
-      btn.textContent = 'Packaging .ZIP...';
+      btn.textContent = t('packagingZip');
 
       try {
         if (typeof JSZip === 'undefined') {
-          throw new Error('JSZip library failed to load.');
+          throw new Error(t('libJszipMissing'));
         }
 
         const zip = new JSZip();
@@ -4332,7 +4704,7 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
           if (node) node.classList.remove('hidden');
         });
         const clonedThemeLabel = clonedRoot.querySelector('#theme-toggle-label');
-        if (clonedThemeLabel) clonedThemeLabel.textContent = 'Light Theme';
+        if (clonedThemeLabel) clonedThemeLabel.textContent = t('themeLight');
         const clonedExportModal = clonedRoot.querySelector('#export-modal');
         if (clonedExportModal) {
           clonedExportModal.classList.add('hidden');
@@ -4369,10 +4741,12 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
         document.body.removeChild(a);
         setTimeout(() => URL.revokeObjectURL(url), 3000);
       } catch (err) {
-        showMessageModal('Export Error', 'Could not generate ZIP file: ' + err.message);
+        showMessageModal(t('exportErrorTitle'), t('exportErrorBodyPrefix') + err.message);
       } finally {
         btn.disabled = false;
         btn.innerHTML = origHtml;
+        const zipLabel = btn.querySelector('[data-i18n="downloadZip"]');
+        if (zipLabel) zipLabel.textContent = t('downloadZip');
       }
     }
 
@@ -4391,14 +4765,76 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       document.getElementById('topbar-actions').classList.toggle('hidden', topBarMinimized);
     });
 
+    function updateThemeToggleUI() {
+      const btn = document.getElementById('btn-theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      if (label) label.textContent = lightTheme ? t('themeDark') : t('themeLight');
+      if (btn) btn.title = lightTheme ? t('themeSwitchToDarkTitle') : t('themeSwitchToLightTitle');
+    }
+
+    function updateLanguageToggleUI() {
+      const ruPill = document.getElementById('lang-pos-ru');
+      const enPill = document.getElementById('lang-pos-en');
+      if (!ruPill || !enPill) return;
+      const isRu = currentLang === 'ru';
+      ruPill.classList.toggle('lang-pill-active', isRu);
+      ruPill.classList.toggle('lang-pill-inactive', !isRu);
+      enPill.classList.toggle('lang-pill-active', !isRu);
+      enPill.classList.toggle('lang-pill-inactive', isRu);
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang === 'ru' ? 'ru' : 'en';
+      document.documentElement.lang = currentLang;
+      document.title = t('docTitle');
+      try {
+        localStorage.setItem('easychess_lang_v1', currentLang);
+      } catch (e) { /* ignore storage restrictions */ }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.dataset.i18n);
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        el.innerHTML = t(el.dataset.i18nHtml);
+      });
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        el.title = t(el.dataset.i18nTitle);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+      });
+
+      const noticeTitleEl = document.getElementById('message-modal-title');
+      if (noticeTitleEl && document.getElementById('message-modal').classList.contains('hidden')) {
+        noticeTitleEl.textContent = t('notice');
+      }
+
+      updateLanguageToggleUI();
+      updateThemeToggleUI();
+      updateHandicapToggleButtonUI();
+      populateSkinDropdown();
+      renderAll();
+
+      const skinModal = document.getElementById('skin-modal');
+      if (skinModal && !skinModal.classList.contains('hidden')) {
+        openCustomSkinModal();
+      }
+    }
+
+    document.getElementById('btn-lang-toggle').addEventListener('click', (e) => {
+      const pill = e.target.closest('[data-lang]');
+      if (pill && pill.dataset.lang !== currentLang) {
+        applyLanguage(pill.dataset.lang);
+      } else {
+        applyLanguage(currentLang === 'en' ? 'ru' : 'en');
+      }
+    });
+
     document.getElementById('btn-theme-toggle').addEventListener('click', () => {
       lightTheme = !lightTheme;
       document.body.classList.toggle('light-theme', lightTheme);
       document.documentElement.classList.toggle('dark', !lightTheme);
-      const btn = document.getElementById('btn-theme-toggle');
-      const label = document.getElementById('theme-toggle-label');
-      label.textContent = lightTheme ? 'Dark Theme' : 'Light Theme';
-      btn.title = lightTheme ? 'Switch to Dark Background Theme' : 'Switch to Light Background Theme';
+      updateThemeToggleUI();
     });
 
     // Antigravity Export & Prompt Modal Listeners
@@ -4549,12 +4985,10 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
 
     // New Game
     document.getElementById('btn-new-game').addEventListener('click', () => {
-      showMessageModal('Start New Game?', 'Reset the board to a fresh standard chess match?', () => {
+      showMessageModal(t('newGameConfirmTitle'), t('newGameConfirmBody'), () => {
         if (handicapMode) {
           handicapMode = false;
-          const btn = document.getElementById('btn-toggle-handicap');
-          btn.textContent = 'Enter Handicap Edit Mode';
-          btn.className = 'w-full py-2 px-3 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/40 text-xs font-semibold text-amber-300 transition';
+          updateHandicapToggleButtonUI();
           document.getElementById('handicap-badge').classList.add('hidden');
           document.getElementById('handicap-controls').classList.add('hidden');
         }
@@ -4569,10 +5003,11 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
     // Declare Draw & Resign
     document.getElementById('btn-offer-draw').addEventListener('click', () => {
       if (engine.status !== 'playing' || handicapMode) return;
-      showMessageModal('Declare Draw?', 'Both players agree to end the game in a draw?', () => {
+      showMessageModal(t('drawConfirmTitle'), t('drawConfirmBody'), () => {
         engine.status = 'draw';
         engine.winner = null;
         engine.statusReason = 'Draw by Mutual Agreement';
+        engine.statusReasonKey = 'mutualDraw';
         history[currentHistoryIndex].state = engine.cloneState();
         renderAll();
       });
@@ -4580,22 +5015,27 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
 
     document.getElementById('btn-resign').addEventListener('click', () => {
       if (engine.status !== 'playing' || handicapMode) return;
-      const loser = engine.turn === 'w' ? 'White' : 'Black';
-      const winner = engine.turn === 'w' ? 'Black' : 'White';
-      showMessageModal(`${loser} Resigns?`, `${loser} will forfeit the match and ${winner} will win.`, () => {
-        engine.status = 'resigned';
-        engine.winner = engine.turn === 'w' ? 'b' : 'w';
-        engine.statusReason = `${loser} Resigned — ${winner} Wins!`;
-        history[currentHistoryIndex].state = engine.cloneState();
-        renderAll();
-      });
+      const isWhiteTurn = engine.turn === 'w';
+      showMessageModal(
+        t(isWhiteTurn ? 'resignConfirmWhiteTitle' : 'resignConfirmBlackTitle'),
+        t(isWhiteTurn ? 'resignConfirmWhiteBody' : 'resignConfirmBlackBody'),
+        () => {
+          engine.status = 'resigned';
+          engine.winner = isWhiteTurn ? 'b' : 'w';
+          engine.statusReason = isWhiteTurn
+            ? 'White Resigned — Black Wins!'
+            : 'Black Resigned — White Wins!';
+          engine.statusReasonKey = isWhiteTurn ? 'resignWinWhite' : 'resignWinBlack';
+          history[currentHistoryIndex].state = engine.cloneState();
+          renderAll();
+        }
+      );
     });
 
     // Bootstrap Application
     preloadAllAnimalSpriteSheets();
-    populateSkinDropdown();
     initHistory();
-    renderAll();
+    applyLanguage(currentLang);
   </script>
 
 </body></html>
