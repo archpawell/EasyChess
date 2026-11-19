@@ -138,6 +138,7 @@
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
     }
     .light-theme aside section,
+    .light-theme #btn-toggle-left-panel,
     .light-theme #lost-by-white-card,
     .light-theme #lost-by-black-card,
     .light-theme #promotion-modal > div,
@@ -419,8 +420,25 @@
   <!-- Main Workspace -->
   <main class="flex-1 max-w-[1720px] w-full mx-auto p-3 sm:p-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
 
-    <!-- LEFT SIDEBAR: Visual Aids, Board Colors, Handicap & Skin Packs -->
-    <aside class="lg:col-span-3 xl:col-span-2 space-y-3.5 order-2 lg:order-1">
+    <!-- LEFT SIDEBAR: Minimizable Settings Panel (Visual Aids, Colors, Skins, Task Setup) -->
+    <aside id="left-settings-panel" class="lg:col-span-3 xl:col-span-2 space-y-3.5 order-2 lg:order-1">
+      <button id="btn-toggle-left-panel" type="button" class="w-full bg-slate-900 hover:bg-slate-800/90 border border-slate-800 rounded-2xl px-4 py-3 shadow-lg flex items-center justify-between gap-2 text-xs font-bold uppercase tracking-wider text-slate-200 transition">
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span data-i18n="settingsPanelTitle">Settings</span>
+        </span>
+        <span class="flex items-center gap-1.5 text-[11px] font-medium normal-case text-slate-400">
+          <span id="left-panel-toggle-hint" data-i18n="settingsMinimizeHint">Minimize</span>
+          <svg id="left-panel-chevron" class="w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </span>
+      </button>
+
+      <div id="left-settings-content" class="space-y-3.5">
 
       <!-- Visual Aids Panel -->
       <section class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 shadow-lg space-y-3">
@@ -637,31 +655,52 @@
         </button>
       </section>
 
-      <!-- Handicap / Custom Setup Mode -->
+      <!-- Task & Handicap Board Setup Mode (Move/Remove/Place + Save/Load Combinations) -->
       <section class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg space-y-3">
         <div class="flex items-center justify-between">
           <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
             <svg class="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
             </svg>
-            <span data-i18n="handicapSetup">Handicap Setup</span>
+            <span data-i18n="handicapSetup">Task &amp; Board Setup</span>
           </h2>
           <span id="handicap-badge" data-i18n="editing" class="hidden text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">Editing</span>
         </div>
 
         <p data-i18n="handicapDesc" class="text-xs text-slate-400 leading-relaxed">
-          Remove any non-King pieces from one or both sides to play with odds/handicap.
+          Arrange or remove figures to set up a custom task, or load a saved combination.
         </p>
 
         <button id="btn-toggle-handicap" class="w-full py-2 px-3 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/40 text-xs font-semibold text-amber-300 transition">
-          Enter Handicap Edit Mode
+          Setup Board / Task
         </button>
 
-        <div id="handicap-controls" class="hidden space-y-2 pt-1">
-          <div class="flex items-center justify-between text-xs text-slate-300 bg-slate-800/80 px-3 py-2 rounded-lg">
-            <span><span data-i18n="removedPiecesLabel">Removed pieces:</span> <strong id="handicap-removed-count" class="text-amber-400">0</strong></span>
-            <button id="btn-restore-handicap" data-i18n="restoreAll" class="text-blue-400 hover:underline font-medium">Restore All</button>
+        <div id="handicap-controls" class="hidden space-y-2.5 pt-1">
+          <p data-i18n="setupHelpHint" class="text-[11px] text-slate-400 leading-snug">
+            Click a figure then click a square to move. Click selected non-King again to remove.
+          </p>
+
+          <div class="grid grid-cols-2 gap-1.5">
+            <button id="btn-remove-selected-piece" type="button" data-i18n="removeSelected" disabled="" class="py-1.5 px-2 rounded-lg bg-red-950/50 hover:bg-red-900/60 disabled:opacity-40 disabled:pointer-events-none border border-red-800/50 text-[11px] font-medium text-red-300 transition">
+              Remove Selected
+            </button>
+            <button id="btn-clear-to-kings" type="button" data-i18n="onlyKings" class="py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] font-medium text-slate-200 transition">
+              Only Kings
+            </button>
           </div>
+
+          <button id="btn-restore-handicap" type="button" data-i18n="restoreAll" class="w-full py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] font-medium text-blue-300 transition">
+            Standard Board
+          </button>
+
+          <div class="space-y-1.5 bg-slate-800/60 p-2 rounded-xl border border-slate-700/70">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span data-i18n="addPiecePaletteLabel">Add Figure (pick &amp; click board):</span>
+              <button id="btn-clear-palette-pick" type="button" data-i18n="clearPick" class="hidden text-blue-400 hover:underline font-medium">Done</button>
+            </div>
+            <div id="setup-piece-palette" class="grid grid-cols-5 gap-1"></div>
+          </div>
+
           <div class="flex items-center justify-between text-xs text-slate-300 bg-slate-800/80 px-3 py-2 rounded-lg">
             <span data-i18n="startingTurnLabel">Starting Turn:</span>
             <select id="handicap-start-turn" class="bg-slate-900 border border-slate-700 rounded px-2 py-0.5 text-xs text-white">
@@ -670,8 +709,29 @@
             </select>
           </div>
         </div>
+
+        <!-- Pre-configured & User-Saved Combinations -->
+        <div class="border-t border-slate-800 pt-2.5 space-y-2">
+          <div data-i18n="taskCombosTitle" class="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">Saved &amp; Preset Tasks</div>
+          <select id="combo-select" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-blue-500"></select>
+          <div class="grid grid-cols-2 gap-1.5">
+            <button id="btn-load-combo" type="button" data-i18n="loadCombo" class="py-1.5 px-2.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-xs font-semibold text-blue-300 transition">
+              Load
+            </button>
+            <button id="btn-delete-combo" type="button" data-i18n="deleteCombo" class="py-1.5 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none border border-slate-700 text-xs font-medium text-red-300 transition">
+              Delete
+            </button>
+          </div>
+          <div class="flex gap-1.5">
+            <input id="combo-name-input" type="text" data-i18n-placeholder="comboNamePlaceholder" placeholder="Combination name" class="flex-1 min-w-0 bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-blue-500">
+            <button id="btn-save-combo" type="button" data-i18n="saveCombo" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 shrink-0 transition">
+              Save
+            </button>
+          </div>
+        </div>
       </section>
 
+      </div>
     </aside>
 
     <!-- CENTER STAGE: 2D Top-Down Board + Captured Pieces Bars -->
@@ -2129,13 +2189,31 @@
         'skinName_minimal-geometric': 'Classic Minimal',
         'skinName_topdown-tokens': 'Geometric Tokens',
         'skinName_nordic-symbols': 'Modern Line',
-        handicapSetup: 'Handicap Setup',
+        settingsPanelTitle: 'Settings',
+        settingsMinimizeHint: 'Minimize',
+        settingsExpandHint: 'Show',
+        handicapSetup: 'Task & Board Setup',
         editing: 'Editing',
-        handicapDesc: 'Remove any non-King pieces from one or both sides to play with odds/handicap.',
-        handicapEnterBtn: 'Enter Handicap Edit Mode',
-        handicapApplyBtn: 'Apply Handicap & Start Game',
-        removedPiecesLabel: 'Removed pieces:',
-        restoreAll: 'Restore All',
+        handicapDesc: 'Arrange or remove figures to set up a custom task, or load a saved combination.',
+        handicapEnterBtn: 'Setup Board / Task',
+        handicapApplyBtn: 'Apply Setup & Start Game',
+        setupHelpHint: 'Click a figure then click a square to move. Click selected non-King again to remove.',
+        removeSelected: 'Remove Selected',
+        onlyKings: 'Only Kings',
+        restoreAll: 'Standard Board',
+        addPiecePaletteLabel: 'Add Figure (pick & click board):',
+        clearPick: 'Done',
+        taskCombosTitle: 'Saved & Preset Tasks',
+        loadCombo: 'Load',
+        deleteCombo: 'Delete',
+        comboNamePlaceholder: 'Combination name',
+        saveCombo: 'Save',
+        comboDefaultPrefix: 'Combination',
+        comboSavedTitle: 'Combination Saved',
+        comboSavedBodyPrefix: 'Saved board setup: ',
+        builtinComboMate2: 'Task 1: Queen & King Mate in 2',
+        builtinComboSmothered: 'Task 2: Smothered Mate Puzzle',
+        builtinComboBreakthrough: 'Task 3: Pawn Breakthrough',
         startingTurnLabel: 'Starting Turn:',
         white: 'White',
         black: 'Black',
@@ -2191,7 +2269,7 @@
         ok: 'OK',
         confirm: 'Confirm',
         notice: 'Notice',
-        statusHandicap: 'Handicap Setup: Click pieces to remove',
+        statusHandicap: 'Setup Mode: Move, add, or remove figures',
         turnWhite: "White's Turn",
         turnBlack: "Black's Turn",
         checkSuffix: ' (CHECK!)',
@@ -2204,7 +2282,7 @@
         resignWinWhite: 'White Resigned — Black Wins!',
         resignWinBlack: 'Black Resigned — White Wins!',
         kingProtectedTitle: 'King Protected',
-        kingProtectedBody: 'Kings cannot be removed in Handicap mode.',
+        kingProtectedBody: 'Kings cannot be removed, only moved to another square.',
         newGameConfirmTitle: 'Start New Game?',
         newGameConfirmBody: 'Reset the board to a fresh standard chess match?',
         drawConfirmTitle: 'Declare Draw?',
@@ -2275,13 +2353,31 @@
         'skinName_minimal-geometric': 'Классический минимализм',
         'skinName_topdown-tokens': 'Геометрические жетоны',
         'skinName_nordic-symbols': 'Современные линии',
-        handicapSetup: 'Режим форы',
+        settingsPanelTitle: 'Настройки',
+        settingsMinimizeHint: 'Свернуть',
+        settingsExpandHint: 'Развернуть',
+        handicapSetup: 'Режим задачи и форы',
         editing: 'Настройка',
-        handicapDesc: 'Убирайте любые фигуры (кроме королей) с одной или обеих сторон для игры с форой.',
-        handicapEnterBtn: 'Настроить фору',
-        handicapApplyBtn: 'Применить фору и начать игру',
-        removedPiecesLabel: 'Убрано фигур:',
-        restoreAll: 'Восстановить все',
+        handicapDesc: 'Перемещайте и убирайте фигуры для создания задачи или загрузите готовую комбинацию.',
+        handicapEnterBtn: 'Настроить позицию',
+        handicapApplyBtn: 'Применить и начать игру',
+        setupHelpHint: 'Нажмите на фигуру, затем на клетку для перемещения. Повторное нажатие на не-короля удаляет фигуру.',
+        removeSelected: 'Удалить фигуру',
+        onlyKings: 'Только короли',
+        restoreAll: 'Обычная доска',
+        addPiecePaletteLabel: 'Добавить фигуру (выберите и нажмите на доску):',
+        clearPick: 'Готово',
+        taskCombosTitle: 'Сохранённые комбинации',
+        loadCombo: 'Загрузить',
+        deleteCombo: 'Удалить',
+        comboNamePlaceholder: 'Название комбинации',
+        saveCombo: 'Сохранить',
+        comboDefaultPrefix: 'Комбинация',
+        comboSavedTitle: 'Комбинация сохранена',
+        comboSavedBodyPrefix: 'Позиция сохранена: ',
+        builtinComboMate2: 'Задача 1: Мат в 2 хода (Ферзь и Король)',
+        builtinComboSmothered: 'Задача 2: Спёртый мат конём',
+        builtinComboBreakthrough: 'Задача 3: Прорыв пешек',
         startingTurnLabel: 'Первый ход:',
         white: 'Белые',
         black: 'Чёрные',
@@ -2337,7 +2433,7 @@
         ok: 'ОК',
         confirm: 'Подтвердить',
         notice: 'Уведомление',
-        statusHandicap: 'Настройка форы: нажимайте на фигуры',
+        statusHandicap: 'Настройка: перемещайте, добавляйте и убирайте фигуры',
         turnWhite: 'Ход белых',
         turnBlack: 'Ход чёрных',
         checkSuffix: ' (ШАХ!)',
@@ -2350,7 +2446,7 @@
         resignWinWhite: 'Белые сдались — победили чёрные!',
         resignWinBlack: 'Чёрные сдались — победили белые!',
         kingProtectedTitle: 'Король защищён',
-        kingProtectedBody: 'Королей нельзя убирать в режиме форы.',
+        kingProtectedBody: 'Королей нельзя удалить — их можно только переставить на другое поле.',
         newGameConfirmTitle: 'Начать новую партию?',
         newGameConfirmBody: 'Сбросить доску к стандартной начальной расстановке?',
         drawConfirmTitle: 'Объявить ничью?',
@@ -3768,10 +3864,59 @@
     let darkSquareColor = '#475569';
     let topBarMinimized = false;
     let lightTheme = false;
+    let leftPanelMinimized = false;
 
-    // Handicap Edit Mode State
+    // Task & Handicap Setup Mode State
     let handicapMode = false;
-    let handicapInitialBoard = null; // snapshot before entering handicap edits
+    let handicapInitialBoard = null; // snapshot before entering setup edits
+    let setupSelectedSquare = null; // { r, c } selected on board during setup mode
+    let setupPlacementPiece = null; // piece code (e.g. 'wQ') chosen from palette
+
+    function createEmptyBoard() {
+      return Array.from({ length: 8 }, () => Array(8).fill(null));
+    }
+
+    function createBoardFromMap(squareMap) {
+      const board = createEmptyBoard();
+      for (const [sq, code] of Object.entries(squareMap)) {
+        const col = sq.charCodeAt(0) - 97;
+        const row = 8 - parseInt(sq.slice(1), 10);
+        if (row >= 0 && row < 8 && col >= 0 && col < 8) {
+          board[row][col] = code;
+        }
+      }
+      return board;
+    }
+
+    const BUILTIN_TASK_COMBOS = [
+      {
+        id: 'builtin-mate-2',
+        nameKey: 'builtinComboMate2',
+        turn: 'w',
+        board: createBoardFromMap({ f6: 'wK', d5: 'wQ', f8: 'bK' })
+      },
+      {
+        id: 'builtin-smothered',
+        nameKey: 'builtinComboSmothered',
+        turn: 'w',
+        board: createBoardFromMap({ g1: 'wK', b3: 'wQ', h6: 'wN', h8: 'bK', f8: 'bR', g7: 'bP', h7: 'bP' })
+      },
+      {
+        id: 'builtin-breakthrough',
+        nameKey: 'builtinComboBreakthrough',
+        turn: 'w',
+        board: createBoardFromMap({ e1: 'wK', a5: 'wP', b5: 'wP', c5: 'wP', e8: 'bK', a7: 'bP', b7: 'bP', c7: 'bP' })
+      }
+    ];
+
+    let savedCombinations = [];
+    try {
+      const savedCombosJson = localStorage.getItem('easychess_saved_combos_v1');
+      if (savedCombosJson) {
+        const parsed = JSON.parse(savedCombosJson);
+        if (Array.isArray(parsed)) savedCombinations = parsed;
+      }
+    } catch (e) { /* ignore storage restrictions */ }
 
     // DOM References
     const boardEl = document.getElementById('chess-board');
@@ -3906,6 +4051,7 @@
       renderCapturedPieces();
       renderTurnLog();
       updateUndoRedoButtons();
+      updateSetupControlsUI();
     }
 
     function renderBoard() {
@@ -3953,8 +4099,9 @@
             }
           }
 
-          // Selected piece highlight
-          if (!handicapMode && selectedSquare && selectedSquare.r === r && selectedSquare.c === c) {
+          // Selected piece highlight (works in both gameplay and board setup mode)
+          const activeSelection = handicapMode ? setupSelectedSquare : selectedSquare;
+          if (activeSelection && activeSelection.r === r && activeSelection.c === c) {
             sq.classList.add('square-selected');
           }
 
@@ -3991,7 +4138,7 @@
           // Piece Icon
           const piece = engine.board[r][c];
           if (piece) {
-            if (handicapMode && piece[1] !== 'K') {
+            if (handicapMode && setupSelectedSquare && setupSelectedSquare.r === r && setupSelectedSquare.c === c && piece[1] !== 'K') {
               sq.classList.add('handicap-removable');
             }
             const pieceWrap = document.createElement('div');
@@ -4183,24 +4330,62 @@
      * 5. BOARD INTERACTION & TURN EXECUTION
      * =========================================================================
      */
-    function handleSquareClick(r, c) {
-      // Handicap Edit Mode: Toggle/remove any non-King figure
-      if (handicapMode) {
-        const piece = engine.board[r][c];
-        if (piece) {
-          if (piece[1] === 'K') {
-            showMessageModal(t('kingProtectedTitle'), t('kingProtectedBody'));
-            return;
-          }
-          engine.board[r][c] = null;
-          updateHandicapCounter();
-          renderBoard();
-        } else if (handicapInitialBoard && handicapInitialBoard[r][c]) {
-          // Allow clicking an emptied original square to restore its initial piece
-          engine.board[r][c] = handicapInitialBoard[r][c];
-          updateHandicapCounter();
-          renderBoard();
+    function handleSetupSquareClick(r, c) {
+      const piece = engine.board[r][c];
+      if (setupPlacementPiece) {
+        if (piece && piece[1] === 'K') {
+          showMessageModal(t('kingProtectedTitle'), t('kingProtectedBody'));
+          return;
         }
+        engine.board[r][c] = setupPlacementPiece;
+        renderBoard();
+        updateSetupControlsUI();
+        return;
+      }
+
+      if (!setupSelectedSquare) {
+        if (piece) {
+          setupSelectedSquare = { r, c };
+        } else if (handicapInitialBoard && handicapInitialBoard[r][c] && handicapInitialBoard[r][c][1] !== 'K') {
+          engine.board[r][c] = handicapInitialBoard[r][c];
+        }
+        renderBoard();
+        updateSetupControlsUI();
+        return;
+      }
+
+      if (setupSelectedSquare.r === r && setupSelectedSquare.c === c) {
+        setupSelectedSquare = null;
+        if (piece && piece[1] === 'K') {
+          renderBoard();
+          updateSetupControlsUI();
+          showMessageModal(t('kingProtectedTitle'), t('kingProtectedBody'));
+          return;
+        }
+        engine.board[r][c] = null;
+        renderBoard();
+        updateSetupControlsUI();
+        return;
+      }
+
+      const moving = engine.board[setupSelectedSquare.r][setupSelectedSquare.c];
+      const target = engine.board[r][c];
+      if (target && target[1] === 'K') {
+        engine.board[r][c] = moving;
+        engine.board[setupSelectedSquare.r][setupSelectedSquare.c] = target;
+      } else {
+        engine.board[r][c] = moving;
+        engine.board[setupSelectedSquare.r][setupSelectedSquare.c] = null;
+      }
+      setupSelectedSquare = null;
+      renderBoard();
+      updateSetupControlsUI();
+    }
+
+    function handleSquareClick(r, c) {
+      // Board & Task Setup Mode: move any figure, place from palette, or remove non-Kings
+      if (handicapMode) {
+        handleSetupSquareClick(r, c);
         return;
       }
 
@@ -4292,19 +4477,72 @@
 
     /**
      * =========================================================================
-     * 6. HANDICAP MODE LOGIC
+     * 6. BOARD & TASK COMBINATION SETUP LOGIC (MOVE/REMOVE + SAVE/LOAD)
      * =========================================================================
      */
-    function updateHandicapCounter() {
-      let count = 0;
-      for (let r = 0; r < 8; r++) {
-        for (let c = 0; c < 8; c++) {
-          if (handicapInitialBoard && handicapInitialBoard[r][c] && !engine.board[r][c]) {
-            count++;
-          }
+    const SETUP_PALETTE_CODES = ['wQ', 'wR', 'wB', 'wN', 'wP', 'bQ', 'bR', 'bB', 'bN', 'bP'];
+
+    function evaluateBoardEndState() {
+      if (engine.getAllLegalMoves(engine.turn).length === 0) {
+        if (engine.isInCheck(engine.turn)) {
+          engine.status = 'checkmate';
+          engine.winner = engine.turn === 'w' ? 'b' : 'w';
+          engine.statusReason = `Checkmate! ${engine.winner === 'w' ? 'White' : 'Black'} wins`;
+          engine.statusReasonKey = engine.winner === 'w' ? 'checkmateWinWhite' : 'checkmateWinBlack';
+        } else {
+          engine.status = 'stalemate';
+          engine.winner = null;
+          engine.statusReason = 'Draw by Stalemate';
+          engine.statusReasonKey = 'stalemateDraw';
         }
       }
-      document.getElementById('handicap-removed-count').textContent = count;
+    }
+
+    function renderSetupPalette() {
+      const paletteEl = document.getElementById('setup-piece-palette');
+      const doneBtn = document.getElementById('btn-clear-palette-pick');
+      if (!paletteEl) return;
+      paletteEl.innerHTML = '';
+      if (doneBtn) doneBtn.classList.toggle('hidden', !setupPlacementPiece);
+
+      SETUP_PALETTE_CODES.forEach(code => {
+        const isPicked = setupPlacementPiece === code;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.title = getPieceLabel(code);
+        btn.className = `aspect-square rounded-lg p-1 border flex items-center justify-center transition ${
+          isPicked
+            ? 'bg-blue-600/30 border-blue-500 ring-2 ring-blue-500'
+            : 'bg-slate-900 hover:bg-slate-700 border-slate-700'
+        }`;
+        btn.innerHTML = renderPieceMarkup(code);
+        btn.onclick = () => {
+          setupPlacementPiece = isPicked ? null : code;
+          setupSelectedSquare = null;
+          renderBoard();
+          updateSetupControlsUI();
+        };
+        paletteEl.appendChild(btn);
+      });
+    }
+
+    function updateSetupControlsUI() {
+      const removeBtn = document.getElementById('btn-remove-selected-piece');
+      if (removeBtn) {
+        const selPiece = (handicapMode && setupSelectedSquare)
+          ? engine.board[setupSelectedSquare.r][setupSelectedSquare.c]
+          : null;
+        removeBtn.disabled = !selPiece || selPiece[1] === 'K';
+      }
+      if (handicapMode) {
+        renderSetupPalette();
+      }
+      const comboSelectEl = document.getElementById('combo-select');
+      const deleteBtn = document.getElementById('btn-delete-combo');
+      if (comboSelectEl && deleteBtn) {
+        const selId = comboSelectEl.value || '';
+        deleteBtn.disabled = !selId || selId.startsWith('builtin-');
+      }
     }
 
     function updateHandicapToggleButtonUI() {
@@ -4323,8 +4561,10 @@
       const badge = document.getElementById('handicap-badge');
       const controls = document.getElementById('handicap-controls');
 
+      setupSelectedSquare = null;
+      setupPlacementPiece = null;
+
       if (!handicapMode) {
-        // Enter Handicap Edit Mode
         handicapMode = true;
         selectedSquare = null;
         currentLegalMoves = [];
@@ -4334,10 +4574,8 @@
         updateHandicapToggleButtonUI();
         badge.classList.remove('hidden');
         controls.classList.remove('hidden');
-        updateHandicapCounter();
         renderAll();
       } else {
-        // Apply Handicap and Start/Resume
         handicapMode = false;
         engine.turn = document.getElementById('handicap-start-turn').value;
         engine.syncCastlingRightsWithBoard();
@@ -4350,20 +4588,7 @@
         engine.capturedByWhite = [];
         engine.capturedByBlack = [];
 
-        // Check if immediate stalemate/checkmate exists in custom setup
-        if (engine.getAllLegalMoves(engine.turn).length === 0) {
-          if (engine.isInCheck(engine.turn)) {
-            engine.status = 'checkmate';
-            engine.winner = engine.turn === 'w' ? 'b' : 'w';
-            engine.statusReason = `Checkmate! ${engine.winner === 'w' ? 'White' : 'Black'} wins`;
-            engine.statusReasonKey = engine.winner === 'w' ? 'checkmateWinWhite' : 'checkmateWinBlack';
-          } else {
-            engine.status = 'stalemate';
-            engine.statusReason = 'Draw by Stalemate';
-            engine.statusReasonKey = 'stalemateDraw';
-          }
-        }
-
+        evaluateBoardEndState();
         initHistory();
 
         updateHandicapToggleButtonUI();
@@ -4371,6 +4596,106 @@
         controls.classList.add('hidden');
         renderAll();
       }
+    }
+
+    function persistSavedCombinations() {
+      try {
+        localStorage.setItem('easychess_saved_combos_v1', JSON.stringify(savedCombinations));
+      } catch (e) { /* ignore storage restrictions */ }
+    }
+
+    function populateComboDropdown(preferredId = null) {
+      const selectEl = document.getElementById('combo-select');
+      if (!selectEl) return;
+      const currentVal = preferredId || selectEl.value;
+      selectEl.innerHTML = '';
+
+      const all = [
+        ...BUILTIN_TASK_COMBOS.map(c => ({ id: c.id, label: t(c.nameKey) })),
+        ...savedCombinations.map(c => ({ id: c.id, label: c.name }))
+      ];
+      all.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.textContent = item.label;
+        if (item.id === currentVal) opt.selected = true;
+        selectEl.appendChild(opt);
+      });
+      updateSetupControlsUI();
+    }
+
+    function loadSelectedCombination() {
+      const selectEl = document.getElementById('combo-select');
+      if (!selectEl) return;
+      const id = selectEl.value;
+      const combo = BUILTIN_TASK_COMBOS.find(c => c.id === id) || savedCombinations.find(c => c.id === id);
+      if (!combo) return;
+
+      engine.board = combo.board.map(row => [...row]);
+      engine.turn = combo.turn === 'b' ? 'b' : 'w';
+      engine.syncCastlingRightsWithBoard();
+      engine.enPassant = null;
+      engine.lastMove = null;
+      engine.halfMoveClock = 0;
+      engine.fullMoveNumber = 1;
+      engine.capturedByWhite = [];
+      engine.capturedByBlack = [];
+      engine.status = 'playing';
+      engine.winner = null;
+      engine.statusReason = '';
+      engine.statusReasonKey = '';
+
+      selectedSquare = null;
+      currentLegalMoves = [];
+      setupSelectedSquare = null;
+      setupPlacementPiece = null;
+      document.getElementById('handicap-start-turn').value = engine.turn;
+
+      if (!handicapMode) {
+        evaluateBoardEndState();
+      } else {
+        handicapInitialBoard = engine.board.map(row => [...row]);
+      }
+
+      initHistory();
+      renderAll();
+    }
+
+    function saveCurrentCombination() {
+      const inputEl = document.getElementById('combo-name-input');
+      const rawName = inputEl ? inputEl.value.trim() : '';
+      const name = rawName || `${t('comboDefaultPrefix')} ${savedCombinations.length + 1}`;
+      const turn = handicapMode ? document.getElementById('handicap-start-turn').value : engine.turn;
+      const boardCopy = engine.board.map(row => [...row]);
+
+      let target = savedCombinations.find(c => c.name.toLowerCase() === name.toLowerCase());
+      if (target) {
+        target.board = boardCopy;
+        target.turn = turn;
+      } else {
+        target = {
+          id: 'combo-' + Date.now(),
+          name,
+          turn,
+          board: boardCopy
+        };
+        savedCombinations.push(target);
+      }
+
+      persistSavedCombinations();
+      if (inputEl) inputEl.value = '';
+      populateComboDropdown(target.id);
+      showMessageModal(t('comboSavedTitle'), t('comboSavedBodyPrefix') + target.name);
+    }
+
+    function deleteSelectedCombination() {
+      const selectEl = document.getElementById('combo-select');
+      if (!selectEl) return;
+      const id = selectEl.value;
+      if (!id || id.startsWith('builtin-')) return;
+      savedCombinations = savedCombinations.filter(c => c.id !== id);
+      persistSavedCombinations();
+      populateComboDropdown();
     }
 
     /**
@@ -4616,9 +4941,9 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
 - Display lost figures for each player in both the player bars and dedicated **"Lost by White"** / **"Lost by Black"** summary trays below the board.
 - Render each lost figure at **50% size (\`22px\`) and 50% opacity (\`opacity: 0.5\`)** using the currently active figure skin pack and figure color scale, alongside live material advantage counters (\`+1\`, \`+3\`, etc.).
 
-## 7. Optional Handicap Setup Mode
-- Provide an **"Enter Handicap Edit Mode"** button that lets players click any non-King figure on the board from one or both sides to remove it (or click an emptied square to restore it) before starting the match.
-- Allow choosing whether White or Black moves first in the handicap game, automatically syncing castling rights with the remaining rooks.
+## 7. Task Combination & Handicap Board Setup Mode
+- Provide a **"Setup Board / Task"** mode that lets players freely move any figure (including Kings) across the board, remove any non-King figure, add figures via a quick-place palette, reset to **Only Kings** or **Standard Board**, and set the starting turn (automatically syncing castling rights).
+- Include pre-configured tactical task presets plus **Save / Load / Delete** controls persisted to \`localStorage\` so custom combinations can be stored and replayed anytime, along with a collapsible left **Settings / Настройки** horizontal bar.
 
 ## 8. Switchable Custom Figure Skin Packs & Animal Packs
 - Allow switching White and Black figure skin packs independently at any time—even mid-game—updating the board, captured trays, and promotion modal immediately (with a quick Swap button); in all sliced 3x2 JPEG sprite-sheet packs (and custom image packs), Pawns render 25% smaller (\`75%\` scale) than the other figures (\`R, N, B, Q, K\`):
@@ -4699,6 +5024,10 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
         if (clonedBody) clonedBody.classList.remove('light-theme');
         const clonedHeader = clonedRoot.querySelector('#top-header');
         if (clonedHeader) clonedHeader.classList.remove('topbar-minimized');
+        const clonedLeftContent = clonedRoot.querySelector('#left-settings-content');
+        if (clonedLeftContent) clonedLeftContent.classList.remove('hidden');
+        const clonedLeftChevron = clonedRoot.querySelector('#left-panel-chevron');
+        if (clonedLeftChevron) clonedLeftChevron.style.transform = 'rotate(0deg)';
         ['#topbar-title-group', '#status-banner', '#topbar-actions'].forEach(sel => {
           const node = clonedRoot.querySelector(sel);
           if (node) node.classList.remove('hidden');
@@ -4772,6 +5101,15 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       if (btn) btn.title = lightTheme ? t('themeSwitchToDarkTitle') : t('themeSwitchToLightTitle');
     }
 
+    function updateLeftPanelToggleUI() {
+      const content = document.getElementById('left-settings-content');
+      const chevron = document.getElementById('left-panel-chevron');
+      const hint = document.getElementById('left-panel-toggle-hint');
+      if (content) content.classList.toggle('hidden', leftPanelMinimized);
+      if (chevron) chevron.style.transform = leftPanelMinimized ? 'rotate(180deg)' : 'rotate(0deg)';
+      if (hint) hint.textContent = leftPanelMinimized ? t('settingsExpandHint') : t('settingsMinimizeHint');
+    }
+
     function updateLanguageToggleUI() {
       const ruPill = document.getElementById('lang-pos-ru');
       const enPill = document.getElementById('lang-pos-en');
@@ -4811,8 +5149,10 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
 
       updateLanguageToggleUI();
       updateThemeToggleUI();
+      updateLeftPanelToggleUI();
       updateHandicapToggleButtonUI();
       populateSkinDropdown();
+      populateComboDropdown();
       renderAll();
 
       const skinModal = document.getElementById('skin-modal');
@@ -4820,6 +5160,11 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
         openCustomSkinModal();
       }
     }
+
+    document.getElementById('btn-toggle-left-panel').addEventListener('click', () => {
+      leftPanelMinimized = !leftPanelMinimized;
+      updateLeftPanelToggleUI();
+    });
 
     document.getElementById('btn-lang-toggle').addEventListener('click', (e) => {
       const pill = e.target.closest('[data-lang]');
@@ -4962,15 +5307,48 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
     });
     document.getElementById('btn-save-skin-pack').addEventListener('click', saveCustomSkinPack);
 
-    // Handicap Controls
+    // Task & Handicap Board Setup & Saved Combinations Controls
     document.getElementById('btn-toggle-handicap').addEventListener('click', toggleHandicapMode);
-    document.getElementById('btn-restore-handicap').addEventListener('click', () => {
-      if (handicapInitialBoard) {
-        engine.board = handicapInitialBoard.map(row => [...row]);
-        updateHandicapCounter();
-        renderBoard();
+    document.getElementById('btn-remove-selected-piece').addEventListener('click', () => {
+      if (!handicapMode || !setupSelectedSquare) return;
+      const p = engine.board[setupSelectedSquare.r][setupSelectedSquare.c];
+      if (p && p[1] === 'K') {
+        showMessageModal(t('kingProtectedTitle'), t('kingProtectedBody'));
+        return;
       }
+      engine.board[setupSelectedSquare.r][setupSelectedSquare.c] = null;
+      setupSelectedSquare = null;
+      renderBoard();
+      updateSetupControlsUI();
     });
+    document.getElementById('btn-clear-to-kings').addEventListener('click', () => {
+      if (!handicapMode) return;
+      const wk = engine.findKing('w') || { r: 7, c: 4 };
+      const bk = engine.findKing('b') || { r: 0, c: 4 };
+      engine.board = createEmptyBoard();
+      engine.board[wk.r][wk.c] = 'wK';
+      engine.board[bk.r][bk.c] = 'bK';
+      setupSelectedSquare = null;
+      setupPlacementPiece = null;
+      renderBoard();
+      updateSetupControlsUI();
+    });
+    document.getElementById('btn-restore-handicap').addEventListener('click', () => {
+      const fresh = new ChessEngine();
+      engine.board = fresh.board;
+      setupSelectedSquare = null;
+      setupPlacementPiece = null;
+      renderBoard();
+      updateSetupControlsUI();
+    });
+    document.getElementById('btn-clear-palette-pick').addEventListener('click', () => {
+      setupPlacementPiece = null;
+      updateSetupControlsUI();
+    });
+    document.getElementById('combo-select').addEventListener('change', updateSetupControlsUI);
+    document.getElementById('btn-load-combo').addEventListener('click', loadSelectedCombination);
+    document.getElementById('btn-save-combo').addEventListener('click', saveCurrentCombination);
+    document.getElementById('btn-delete-combo').addEventListener('click', deleteSelectedCombination);
 
     // Undo / Redo / History Controls
     document.getElementById('btn-undo-all').addEventListener('click', () => jumpToHistoryIndex(0));
@@ -4988,6 +5366,8 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       showMessageModal(t('newGameConfirmTitle'), t('newGameConfirmBody'), () => {
         if (handicapMode) {
           handicapMode = false;
+          setupSelectedSquare = null;
+          setupPlacementPiece = null;
           updateHandicapToggleButtonUI();
           document.getElementById('handicap-badge').classList.add('hidden');
           document.getElementById('handicap-controls').classList.add('hidden');
