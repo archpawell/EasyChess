@@ -408,6 +408,14 @@
         </svg>
         <span id="theme-toggle-label">Light Theme</span>
       </button>
+      <button id="btn-update-github" type="button" data-i18n-title="updateGithubBtnTitle" title="Download latest version of all files from GitHub and refresh page" class="px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-xs font-semibold text-blue-300 flex items-center gap-1.5 transition">
+        <svg id="update-github-icon" class="w-4 h-4 text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+        <span id="update-github-label" data-i18n="updateGithubBtnLabel">Update</span>
+      </button>
       <button id="btn-open-export-modal" data-i18n-title="exportBtnTitle" title="Export Project ZIP &amp; Full Antigravity Prompt" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 flex items-center gap-1.5 transition">
         <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
@@ -2144,6 +2152,11 @@
         appSubtitle: 'Local Pass & Play • Customizable Board & Skins',
         exportBtnTitle: 'Export Project ZIP & Full Antigravity Prompt',
         exportBtnLabel: 'Export Antigravity ZIP & Prompt',
+        updateGithubBtnLabel: 'Update',
+        updateGithubBtnTitle: 'Download latest version of all files from GitHub and refresh page',
+        updatingFromGithub: 'Updating...',
+        updateGithubErrorTitle: 'Update Failed',
+        updateGithubErrorPrefix: 'Could not download files from GitHub: ',
         themeLight: 'Light Theme',
         themeDark: 'Dark Theme',
         themeSwitchToLightTitle: 'Switch to Light Background Theme',
@@ -2308,6 +2321,11 @@
         appSubtitle: 'Локальная игра на одном ПК • Настройка доски и фигур',
         exportBtnTitle: 'Экспортировать ZIP проекта и полный промпт Antigravity',
         exportBtnLabel: 'Экспорт ZIP и промпта',
+        updateGithubBtnLabel: 'Обновить',
+        updateGithubBtnTitle: 'Скачать новую версию всех файлов с GitHub и обновить страницу',
+        updatingFromGithub: 'Обновление...',
+        updateGithubErrorTitle: 'Ошибка обновления',
+        updateGithubErrorPrefix: 'Не удалось скачать файлы с GitHub: ',
         themeLight: 'Светлая тема',
         themeDark: 'Тёмная тема',
         themeSwitchToLightTitle: 'Переключить на светлую тему фона',
@@ -4921,6 +4939,8 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
   - Active player bars at the top and bottom of the board highlight only during that player's turn and remain transparent otherwise, while \`Flip\` and \`New Game\` controls live at the top of the **Turns Log** section.
 - **Language Selection ("РУС" / "ENG")**:
   - Two-position \`РУС\` / \`ENG\` toggle button anchored in the bottom-right corner switches the entire interface and all game/modal messages between Russian and English live.
+- **GitHub Update Button (\`Update\` / \`Обновить\`)**:
+  - Top-bar action fetches the latest repository file tree and raw files from \`archpawell/EasyChess\` (\`main\`), packages \`EasyChess.zip\` for download, and reloads the page.
 
 ## 4. Customizable Field Colors & Figure Colors (Full Color Scale + Presets)
 - **Field Colors ("White" & "Black" Cells)**:
@@ -5034,6 +5054,13 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
         });
         const clonedThemeLabel = clonedRoot.querySelector('#theme-toggle-label');
         if (clonedThemeLabel) clonedThemeLabel.textContent = t('themeLight');
+        const clonedUpdateBtn = clonedRoot.querySelector('#btn-update-github');
+        if (clonedUpdateBtn) {
+          clonedUpdateBtn.disabled = false;
+          clonedUpdateBtn.removeAttribute('disabled');
+        }
+        const clonedUpdateLabel = clonedRoot.querySelector('#update-github-label');
+        if (clonedUpdateLabel) clonedUpdateLabel.textContent = t('updateGithubBtnLabel');
         const clonedExportModal = clonedRoot.querySelector('#export-modal');
         if (clonedExportModal) {
           clonedExportModal.classList.add('hidden');
@@ -5061,14 +5088,7 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
         });
 
         const blob = await zip.generateAsync({ type: 'blob' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'antigravity-2d-chess-project.zip';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(url), 3000);
+        triggerBlobDownload(blob, 'antigravity-2d-chess-project.zip');
       } catch (err) {
         showMessageModal(t('exportErrorTitle'), t('exportErrorBodyPrefix') + err.message);
       } finally {
@@ -5076,6 +5096,110 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
         btn.innerHTML = origHtml;
         const zipLabel = btn.querySelector('[data-i18n="downloadZip"]');
         if (zipLabel) zipLabel.textContent = t('downloadZip');
+      }
+    }
+
+    function triggerBlobDownload(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 3000);
+    }
+
+    const GITHUB_OWNER = 'archpawell';
+    const GITHUB_REPO = 'EasyChess';
+    const GITHUB_BRANCH = 'main';
+    const GITHUB_FALLBACK_FILES = [
+      '.gitignore',
+      'README.md',
+      'index.html',
+      'assets/cats/sheet.jpg',
+      'assets/dogs/sheet.jpg',
+      'assets/guinea-pig-2/bB.svg',
+      'assets/guinea-pig-2/bK.svg',
+      'assets/guinea-pig-2/bN.svg',
+      'assets/guinea-pig-2/bP.svg',
+      'assets/guinea-pig-2/bQ.svg',
+      'assets/guinea-pig-2/bR.svg',
+      'assets/guinea-pig-2/wB.svg',
+      'assets/guinea-pig-2/wK.svg',
+      'assets/guinea-pig-2/wN.svg',
+      'assets/guinea-pig-2/wP.svg',
+      'assets/guinea-pig-2/wQ.svg',
+      'assets/guinea-pig-2/wR.svg',
+      'assets/guinea-pigs-alt/sheet.jpg',
+      'assets/hedgehogs/sheet.jpg',
+      'assets/mice/sheet.jpg',
+      'assets/vendor/animal-packs.js',
+      'assets/vendor/fonts.css',
+      'assets/vendor/jszip.min.js',
+      'assets/vendor/tailwindcss.js'
+    ];
+
+    async function fetchGithubFilePaths() {
+      const treeUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1&t=${Date.now()}`;
+      try {
+        const res = await fetch(treeUrl, { cache: 'no-store' });
+        if (!res.ok) return GITHUB_FALLBACK_FILES;
+        const json = await res.json();
+        const paths = Array.isArray(json.tree)
+          ? json.tree.filter(item => item && item.type === 'blob' && item.path).map(item => item.path)
+          : [];
+        return paths.length > 0 ? paths : GITHUB_FALLBACK_FILES;
+      } catch (e) {
+        return GITHUB_FALLBACK_FILES;
+      }
+    }
+
+    async function updateFromGitHubAndRefresh() {
+      const btn = document.getElementById('btn-update-github');
+      const label = document.getElementById('update-github-label');
+      if (!btn || btn.disabled) return;
+      btn.disabled = true;
+      if (label) label.textContent = t('updatingFromGithub');
+
+      try {
+        const filePaths = await fetchGithubFilePaths();
+        const bust = Date.now();
+        const downloaded = await Promise.all(
+          filePaths.map(async (filePath) => {
+            const encodedPath = filePath.split('/').map(encodeURIComponent).join('/');
+            const rawUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${encodedPath}?t=${bust}`;
+            const res = await fetch(rawUrl, { cache: 'no-store' });
+            if (!res.ok) {
+              throw new Error(`${filePath} (HTTP ${res.status})`);
+            }
+            const data = await res.arrayBuffer();
+            return { path: filePath, data };
+          })
+        );
+
+        if (typeof JSZip !== 'undefined') {
+          const zip = new JSZip();
+          for (const item of downloaded) {
+            zip.file(item.path, item.data);
+          }
+          const blob = await zip.generateAsync({ type: 'blob' });
+          triggerBlobDownload(blob, 'EasyChess.zip');
+        } else {
+          const htmlEntry = downloaded.find(item => item.path === 'index.html');
+          if (!htmlEntry) {
+            throw new Error(t('libJszipMissing'));
+          }
+          const blob = new Blob([htmlEntry.data], { type: 'text/html;charset=utf-8' });
+          triggerBlobDownload(blob, 'index.html');
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 800));
+        window.location.reload();
+      } catch (err) {
+        btn.disabled = false;
+        if (label) label.textContent = t('updateGithubBtnLabel');
+        showMessageModal(t('updateGithubErrorTitle'), t('updateGithubErrorPrefix') + err.message);
       }
     }
 
@@ -5182,7 +5306,8 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       updateThemeToggleUI();
     });
 
-    // Antigravity Export & Prompt Modal Listeners
+    // Top Bar Update from GitHub & Antigravity Export Modal Listeners
+    document.getElementById('btn-update-github').addEventListener('click', updateFromGitHubAndRefresh);
     document.getElementById('btn-open-export-modal').addEventListener('click', openExportModal);
     document.getElementById('btn-close-export-modal').addEventListener('click', () => {
       document.getElementById('export-modal').classList.add('hidden');
