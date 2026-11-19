@@ -2731,7 +2731,8 @@
 
           if (tiles && tiles[type]) {
             const tintedUrl = getTintedSpriteDataUrl(`${id}_${type}`, tiles[type], targetHex);
-            return `<img src="${tintedUrl}" alt="${PIECE_LABELS[pieceCode]}" />`;
+            const sizeStyle = type === 'P' ? ' style="width: 75%; height: 75%;"' : '';
+            return `<img src="${tintedUrl}" alt="${PIECE_LABELS[pieceCode]}"${sizeStyle} />`;
           }
           return fallbackRenderer(pieceCode);
         }
@@ -3452,6 +3453,7 @@
       // User-created custom skin pack
       const targetHex = color === 'w' ? whitePieceColor : blackPieceColor;
       const asset = (activeSkin.pieces && activeSkin.pieces[pieceCode]) || fallbackSkin.render(pieceCode);
+      const sizeStyle = pieceCode[1] === 'P' ? ' style="width: 75%; height: 75%;"' : '';
 
       if (!asset) return '';
       const trimmed = asset.trim();
@@ -3461,11 +3463,11 @@
         // Dynamically recolor uploaded 3x2 sprite-sheet pieces
         const cacheId = `${activeSkin.id}_${pieceCode}`;
         const cached = getTintedSpriteDataUrlFromDataUrl(cacheId, trimmed, targetHex);
-        return `<img src="${cached}" alt="${PIECE_LABELS[pieceCode]}" />`;
+        return `<img src="${cached}" alt="${PIECE_LABELS[pieceCode]}"${sizeStyle} />`;
       } else {
         // Standard Image URL or Data URL
         const fallbackSvg = encodeURIComponent(fallbackSkin.render(pieceCode));
-        return `<img src="${trimmed.replace(/"/g, '&quot;')}" alt="${PIECE_LABELS[pieceCode]}" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,${fallbackSvg}';" />`;
+        return `<img src="${trimmed.replace(/"/g, '&quot;')}" alt="${PIECE_LABELS[pieceCode]}"${sizeStyle} onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,${fallbackSvg}';" />`;
       }
     }
 
@@ -4057,7 +4059,8 @@
             preview.innerHTML = val;
             preview.style.opacity = '1';
           } else {
-            preview.innerHTML = `<img src="${val.replace(/"/g, '&quot;')}" class="w-full h-full object-contain" />`;
+            const sizeStyle = code[1] === 'P' ? ' style="width: 75%; height: 75%;"' : '';
+            preview.innerHTML = `<img src="${val.replace(/"/g, '&quot;')}" class="w-full h-full object-contain"${sizeStyle} />`;
             preview.style.opacity = '1';
           }
         };
@@ -4246,7 +4249,7 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
 - Allow choosing whether White or Black moves first in the handicap game, automatically syncing castling rights with the remaining rooks.
 
 ## 8. Switchable Custom Figure Skin Packs & Animal Packs
-- Allow switching White and Black figure skin packs independently at any time—even mid-game—updating the board, captured trays, and promotion modal immediately (with a quick Swap button):
+- Allow switching White and Black figure skin packs independently at any time—even mid-game—updating the board, captured trays, and promotion modal immediately (with a quick Swap button); in all sliced 3x2 JPEG sprite-sheet packs (and custom image packs), Pawns render 25% smaller (\`75%\` scale) than the other figures (\`R, N, B, Q, K\`):
   1. **Hedgehogs (Attached Pack — Default White)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
   2. **Mice (Attached Pack)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
   3. **Cats (Attached Pack — Default Black)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
