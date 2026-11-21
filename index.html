@@ -633,6 +633,8 @@
               <option value="cats">Cats (Attached Pack)</option>
               <option value="dogs">Dogs (Attached Pack)</option>
               <option value="guinea-pigs-alt">Alternative Guinea Pig (Attached Pack)</option>
+              <option value="bears">Bears (Attached Pack)</option>
+              <option value="rabbits">Rabbits (Attached Pack)</option>
               <option value="guinea-pigs-2">Guinea Pig2 (Attached Pack)</option>
               <option value="minimal-geometric">Classic Minimal</option>
               <option value="topdown-tokens">Geometric Tokens</option>
@@ -647,6 +649,8 @@
               <option value="cats">Cats (Attached Pack)</option>
               <option value="dogs">Dogs (Attached Pack)</option>
               <option value="guinea-pigs-alt">Alternative Guinea Pig (Attached Pack)</option>
+              <option value="bears">Bears (Attached Pack)</option>
+              <option value="rabbits">Rabbits (Attached Pack)</option>
               <option value="guinea-pigs-2">Guinea Pig2 (Attached Pack)</option>
               <option value="minimal-geometric">Classic Minimal</option>
               <option value="topdown-tokens">Geometric Tokens</option>
@@ -2198,6 +2202,8 @@
         skinName_cats: 'Cats (Attached Pack)',
         skinName_dogs: 'Dogs (Attached Pack)',
         'skinName_guinea-pigs-alt': 'Alternative Guinea Pig (Attached Pack)',
+        skinName_bears: 'Bears (Attached Pack)',
+        skinName_rabbits: 'Rabbits (Attached Pack)',
         'skinName_guinea-pigs-2': 'Guinea Pig2 (Attached Pack)',
         'skinName_minimal-geometric': 'Classic Minimal',
         'skinName_topdown-tokens': 'Geometric Tokens',
@@ -2367,6 +2373,8 @@
         skinName_cats: 'Котики (набор)',
         skinName_dogs: 'Собачки (набор)',
         'skinName_guinea-pigs-alt': 'Альтернативные морские свинки (набор)',
+        skinName_bears: 'Мишки (набор)',
+        skinName_rabbits: 'Кролики (набор)',
         'skinName_guinea-pigs-2': 'Морские свинки 2 (набор)',
         'skinName_minimal-geometric': 'Классический минимализм',
         'skinName_topdown-tokens': 'Геометрические жетоны',
@@ -2553,7 +2561,9 @@
       'mice': null,
       'cats': null,
       'dogs': null,
-      'guinea-pigs-alt': null
+      'guinea-pigs-alt': null,
+      'bears': null,
+      'rabbits': null
     };
     // Cache of tinted Data URLs keyed by `${packId}_${pieceCode}_${targetHex}`
     const tintedSpriteCache = new Map();
@@ -3226,6 +3236,14 @@
       return createSpriteSheetAnimalSkin('guinea-pigs-alt', 'Alternative Guinea Pig (Attached Pack)', renderGuineaPig2ExactSvg);
     }
 
+    function createBearsSkin() {
+      return createSpriteSheetAnimalSkin('bears', 'Bears (Attached Pack)', renderGuineaPig2ExactSvg);
+    }
+
+    function createRabbitsSkin() {
+      return createSpriteSheetAnimalSkin('rabbits', 'Rabbits (Attached Pack)', renderGuineaPig2ExactSvg);
+    }
+
     function preloadSheetIntoPack(packId, primarySrc, fallbackSrc = null) {
       const img = new Image();
       img.crossOrigin = 'anonymous';
@@ -3265,7 +3283,9 @@
         { id: 'mice', key: 'mice' },
         { id: 'cats', key: 'cats' },
         { id: 'dogs', key: 'dogs' },
-        { id: 'guinea-pigs-alt', key: 'guinea_pigs_alt' }
+        { id: 'guinea-pigs-alt', key: 'guinea_pigs_alt' },
+        { id: 'bears', key: 'bears' },
+        { id: 'rabbits', key: 'rabbits' }
       ];
       for (const { id, key } of sheetPacks) {
         const fallbackPath = `assets/${id}/sheet.jpg`;
@@ -3847,6 +3867,8 @@
       createCatsSkin(),
       createDogsSkin(),
       createGuineaPigsAltSkin(),
+      createBearsSkin(),
+      createRabbitsSkin(),
       createGuineaPigsSkin(),
       createMinimalistGeometricSkin(),
       createTopDownTokenSkin(),
@@ -4972,7 +4994,9 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
   3. **Cats (Attached Pack — Default Black)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
   4. **Dogs (Attached Pack)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
   5. **Alternative Guinea Pig (Attached Pack)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
-  6. **Guinea Pig2 (Attached Pack)**:
+  6. **Bears (Attached Pack)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
+  7. **Rabbits (Attached Pack)**: Sliced 3x2 sprite sheet with background removal and dynamic luminance tinting.
+  8. **Guinea Pig2 (Attached Pack)**:
      - Supports slicing the 3x2 sprite sheet (\`Gemini_Generated_Image_if56f5if56f5if56_2.jpeg\`, ordered Top: \`[Pawn, Rook, Knight]\`, Bottom: \`[Bishop, Queen, King]\`) with edge flood-fill background removal and dynamic luminance tinting, paired with 1:1 matching vector illustrations of all 6 Guinea Pig2 characters:
        - **Pawn**: 3/4 right-facing plump guinea pig with center white blaze and grey cheek patches.
        - **Rook**: 3/4 right-facing guinea pig wearing a stone castle rook turret crown.
@@ -4980,10 +5004,10 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
        - **Bishop**: Tall front-facing guinea pig wearing a bishop mitre hat and holding a diagonal scepter with both front paws.
        - **Queen**: Front-facing plump guinea pig wearing a 5-point ball-tipped crown and scalloped collar with an oval brooch.
        - **King**: Front-facing majestic guinea pig wearing a 3-peak diamond crown and full royal ermine-trimmed cape.
-  7. **Classic Minimal**: Clean geometric chess silhouettes.
-  8. **Geometric Tokens**: Top-down circular tokens with typography and dashed inner rings.
-  9. **Modern Line**: Nordic minimalist symbol tokens.
-  10. **Custom Skin Pack Editor Modal**:
+  9. **Classic Minimal**: Clean geometric chess silhouettes.
+  10. **Geometric Tokens**: Top-down circular tokens with typography and dashed inner rings.
+  11. **Modern Line**: Nordic minimalist symbol tokens.
+  12. **Custom Skin Pack Editor Modal**:
      - Includes a **Quick 3x2 Sprite Sheet Auto-Slicer** (upload any 3x2 character sheet image, auto-remove white card background, and enable dynamic Figure Color tinting) plus 12 individual piece upload/SVG/URL slots persisted to \`localStorage\`.`;
 
     const PROJECT_README_MD = `# 2D Top-Down PvP Chess (Antigravity Ready Project)
@@ -5117,6 +5141,7 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       '.gitignore',
       'README.md',
       'index.html',
+      'assets/bears/sheet.jpg',
       'assets/cats/sheet.jpg',
       'assets/dogs/sheet.jpg',
       'assets/guinea-pig-2/bB.svg',
@@ -5134,6 +5159,7 @@ Build a complete, responsive 2D Top-Down Player-vs-Player (local pass-and-play o
       'assets/guinea-pigs-alt/sheet.jpg',
       'assets/hedgehogs/sheet.jpg',
       'assets/mice/sheet.jpg',
+      'assets/rabbits/sheet.jpg',
       'assets/vendor/animal-packs.js',
       'assets/vendor/fonts.css',
       'assets/vendor/jszip.min.js',
